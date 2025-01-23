@@ -10,10 +10,14 @@ body, html {
 .hero {
     position: relative;
     width: 100%;
-    height: 80vh; /* 80% of the viewport height */
-    overflow: hidden;
-    background: url('images/Clothing1.png') no-repeat center center;
-    background-size: cover; /* Ensures it covers the entire area */
+    height: 80vh; /* Adjust height to fit design */
+    background-image: url('images/Clothing1.png'); /* Make sure the image path is correct */
+    background-position: center center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-size: cover; /* Ensures the image fills the section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .background-img {
