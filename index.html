@@ -7,33 +7,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Top Navigation -->
     <header>
-        <nav>
+        <nav class="top-nav">
             <ul>
                 <li><a href="#">Clothing</a></li>
-                <li><a href="#">Electronics</a></li>
                 <li><a href="#">Luxury Items</a></li>
+                <li><a href="#">Electronics</a></li>
                 <li><a href="#">All Products</a></li>
             </ul>
         </nav>
-        <div class="top-buttons">
-            <div class="white-box"></div>
-            <div class="white-box"></div>
-            <div class="white-box"></div>
-        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <img src="images/Clothing1.png" alt="Home Background" class="background-img">
-        </section>
-
-        <section class="bottom-section">
-            <div class="grey-box"></div>
-            <div class="grey-box"></div>
-            <div class="grey-box"></div>
-        </section>
+    <!-- Hero Banner -->
+    <main class="hero-banner">
+        <div class="hero-content">
+            <img src="images/Clothing1.png" alt="Featured Product" class="hero-product">
+            <div class="text-overlay">
+                <h2>Exclusive Collection - Now Available</h2>
+                <p>Shop the latest fashion, electronics, and luxury items.</p>
+                <button class="shop-now">Shop Now</button>
+            </div>
+        </div>
     </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="bottom-nav">
+        <div class="nav-icon"><img src="images/home-icon.png" alt="Home"></div>
+        <div class="nav-icon"><img src="images/search-icon.png" alt="Search"></div>
+        <div class="nav-icon"><img src="images/profile-icon.png" alt="Profile"></div>
+    </footer>
 
     <script src="scripts.js"></script>
 </body>

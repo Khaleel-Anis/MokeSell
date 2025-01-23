@@ -4,82 +4,94 @@ body, html {
     padding: 0;
     font-family: Arial, sans-serif;
     text-align: center;
-    color: black;
 }
 
-/* Fix Background Image */
-.hero {
-    position: absolute; /* Places it at the very back */
+/* Top Navigation */
+.top-nav {
+    position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 80vh; /* Ensures background fills the space */
-    background-image: url('images/Clothing1.png'); /* Ensure correct file path */
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover; /* Ensures no weird repeating */
-    z-index: -10; /* Pushes it completely to the back */
+    display: flex;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8); /* Slight transparency */
+    padding: 15px 0;
 }
 
-/* Navigation Bar */
-nav {
-    position: relative;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.9); /* Transparent white for readability */
-    padding: 10px 0;
-    text-align: center;
-    z-index: 10; /* Keeps it above background */
-}
-
-nav ul {
+.top-nav ul {
     list-style: none;
     padding: 0;
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    gap: 30px;
 }
 
-nav ul li {
+.top-nav ul li {
     display: inline;
 }
 
-nav ul li a {
+.top-nav ul li a {
     text-decoration: none;
     color: black;
     font-weight: bold;
     font-size: 18px;
 }
 
-/* White bottom section */
-.bottom-section {
-    position: relative;
-    background-color: white;
-    padding: 30px 0;
+/* Hero Banner */
+.hero-banner {
+    width: 100%;
+    height: 80vh; /* Full height */
+    background-image: url('images/featured-background.png'); /* Ensure the file exists */
+    background-size: cover;
+    background-position: center;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
-    z-index: 10; /* Ensures it's above background */
-}
-
-/* Grey placeholder boxes */
-.grey-box {
-    width: 60px;
-    height: 60px;
-    background-color: lightgray;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-/* Fix text positioning */
-.header-text {
     position: relative;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 24px;
-    font-weight: bold;
-    background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+}
+
+/* Hero Content */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: black;
+    background: rgba(255, 255, 255, 0.8); /* Light background for readability */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero-product {
+    width: 300px; /* Adjust size */
+}
+
+/* Text Overlay */
+.text-overlay {
+    margin-top: 20px;
+}
+
+.shop-now {
+    background: red;
+    color: white;
     padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
     border-radius: 5px;
-    z-index: 10; /* Ensures text is visible */
+    margin-top: 10px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: red;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.nav-icon img {
+    width: 30px;
+    height: 30px;
 }
