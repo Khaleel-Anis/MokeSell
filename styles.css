@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+#listings, #add-listing {
+    margin-bottom: 30px;
+}
+
+.listing {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px auto;
+    width: 80%;
+    border-radius: 5px;
+}
+
+form input, form textarea {
+    width: 80%;
+    margin: 5px;
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
