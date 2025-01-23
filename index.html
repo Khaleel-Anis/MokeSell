@@ -10,12 +10,31 @@
     <header>
         <h1>Welcome to MokeSell</h1>
     </header>
+
     <main>
-        <p>Your content goes here.</p>
+        <!-- Listings Display -->
+        <section id="listings">
+            <h2>Latest Listings</h2>
+            <div id="listing-container"></div>
+        </section>
+
+        <!-- Form to Add Listings -->
+        <section id="add-listing">
+            <h2>Add a New Listing</h2>
+            <form id="listing-form">
+                <input type="text" id="title" placeholder="Item Title" required>
+                <textarea id="description" placeholder="Description" required></textarea>
+                <input type="number" id="price" placeholder="Price (£)" required>
+                <input type="text" id="category" placeholder="Category" required>
+                <button type="submit">Add Listing</button>
+            </form>
+        </section>
     </main>
+
     <footer>
-        <p>&copy; 2023 MokeSell  All rights reserved.</p>
+        <p>&copy; 2025 MokeSell. All rights reserved.</p>
     </footer>
+
     <script src="scripts.js"></script>
 </body>
 </html>
