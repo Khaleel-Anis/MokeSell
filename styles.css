@@ -14,20 +14,31 @@ body, html {
     background: rgba(255, 255, 255, 0.9);
     padding: 15px 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     z-index: 1000;
 }
 
-/* Navigation Links (Centered) */
+/* Left Logo Section */
+.nav-left {
+    display: flex;
+    align-items: center;
+    flex: 1; /* Ensures the left section has space */
+}
+
+.logo {
+    width: 50px; /* Adjust logo size */
+    height: auto;
+}
+
+/* Centered Navigation Links */
 .nav-links {
     list-style: none;
     padding: 0;
     display: flex;
     gap: 30px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    flex: 2; /* Allows centering */
+    justify-content: center;
 }
 
 .nav-links li {
@@ -41,25 +52,18 @@ body, html {
     font-size: 18px;
 }
 
-/* Logo on Left Side (Optional) */
-.nav-left {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    width: 50px; /* Adjust logo size */
-    height: auto;
-}
-
-/* Icons (Wishlist & Cart) on the Right */
+/* Right Icons Section (Wishlist & Cart Only) */
 .nav-icons {
     display: flex;
-    gap: 15px;
+    align-items: center;
+    gap: 20px; /* Space between icons */
+    flex: 1; /* Ensures space on the right */
+    justify-content: flex-end;
 }
 
+/* Icons */
 .icon {
-    width: 24px;  /* Adjust icon size */
+    width: 24px;
     height: 24px;
     cursor: pointer;
 }
