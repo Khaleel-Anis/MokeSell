@@ -1,8 +1,11 @@
 const API_KEY = "YOUR_RESTDB_API_KEY";  // Replace with your RestDB.io API Key
 const API_URL = "https://your-database-id.restdb.io/rest/listings"; // Replace with your RestDB.io Database URL
 
+let listingsData = [];
+
 document.addEventListener("DOMContentLoaded", () => {
     fetchListings();
+    setupNavigationSwipe();
 });
 
 function fetchListings() {
@@ -14,7 +17,10 @@ function fetchListings() {
         }
     })
     .then(response => response.json())
-    .then(data => displayListings(data))
+    .then(data => {
+        listingsData = data;
+        displayListings(data);
+    })
     .catch(error => console.error("Error fetching listings:", error));
 }
 
@@ -22,9 +28,11 @@ function displayListings(listings) {
     const listingContainer = document.getElementById("listing-container");
     listingContainer.innerHTML = "";
 
-    listings.forEach(listing => {
+    listings.forEach((listing, index) => {
         const listingElement = document.createElement("div");
-        listingElement.classList.add("listing");
+        listingElement.classList.add("listing", "scroll-item");
+        listingElement.setAttribute("data-category", listing.category);
+        listingElement.setAttribute("data-index", index);
 
         listingElement.innerHTML = `
             <h3>${listing.title}</h3>
@@ -37,7 +45,7 @@ function displayListings(listings) {
     });
 }
 
-document.getElementById("listing-form").addEventListener("submit", function(event) {
+document.getElementById("listing-form")?.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const newListing = {
@@ -64,3 +72,47 @@ document.getElementById("listing-form").addEventListener("submit", function(even
 
     this.reset();
 });
+
+function setupNavigationSwipe() {
+    const navLinks = document.querySelectorAll(".nav-links li a");
+    const scrollContainer = document.querySelector(".scroll-container");
+    let currentIndex = 0;
+    
+    if (!scrollContainer) return;
+    
+    scrollContainer.style.display = "flex";
+    scrollContainer.style.overflowX = "hidden";
+    scrollContainer.style.whiteSpace = "nowrap";
+    scrollContainer.style.transition = "transform 0.5s ease-in-out";
+    
+    navLinks.forEach(link => {
+        link.addEventListener("click", function (event) {
+            const category = this.textContent.trim();
+            localStorage.setItem("selectedCategory", category);
+            
+            const targetIndex = [...document.querySelectorAll(".scroll-item")]
+                .findIndex(item => item.getAttribute("data-category") === category);
+            
+            if (targetIndex !== -1) {
+                scrollContainer.style.transform = `translateX(-${targetIndex * 100}%)`;
+                currentIndex = targetIndex;
+                event.preventDefault();
+            } else {
+                // Allow navigation if category isn't found in the current page
+                window.location.href = link.href;
+            }
+        });
+    });
+
+    // Restore last scrolled category
+    const savedCategory = localStorage.getItem("selectedCategory");
+    if (savedCategory) {
+        setTimeout(() => {
+            const targetIndex = [...document.querySelectorAll(".scroll-item")]
+                .findIndex(item => item.getAttribute("data-category") === savedCategory);
+            if (targetIndex !== -1) {
+                scrollContainer.style.transform = `translateX(-${targetIndex * 100}%)`;
+            }
+        }, 300);
+    }
+}
