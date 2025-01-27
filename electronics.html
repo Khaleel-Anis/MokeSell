@@ -4,49 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MokeSell - Home</title>
+    <meta name="description" content="Shop the latest streetwear, luxury items, and electronics at MokeSell.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
     <!-- Top Navigation -->
     <header>
-        <nav class="top-nav">
-            <div class="nav-left">
+        <nav>
+            <a href="index.html">
                 <img src="images/logo_transparent.png" alt="MokeSell Logo" class="logo">
-            </div>
-            
-            <ul class="nav-links">
+            </a>
+            <ul>
                 <li><a href="index.html">Clothing</a></li>
                 <li><a href="luxury-items.html">Luxury Items</a></li>
                 <li><a href="electronics.html">Electronics</a></li>
                 <li><a href="all-products.html">All Products</a></li>
             </ul>
-
-            <div class="nav-icons">
-                <img src="images/wishlist-icon.png" alt="Wishlist" class="icon">
-                <img src="images/cart-icon.png" alt="Cart" class="icon">
-            </div>
+            <ul>
+                <li><a href="wishlist.html"><img src="images/wishlist-icon.png" alt="Wishlist"></a></li>
+                <li><a href="cart.html"><img src="images/cart-icon.png" alt="Cart"></a></li>
+            </ul>
         </nav>
     </header>
 
     <!-- Scroll Snap Section (Image Gallery) -->
-    <section class="scroll-container">
-        <div class="scroll-item">
-            <img src="images/Electronics1.png" alt="Product 1">
-            <div class="product-text">
-                <h2>Exclusive Electronics Collection</h2>
-                <p>Shop the latest electronics now.</p>
-                <button class="shop-now">Shop Now</button>
-            </div>
-        </div>
-        <div class="scroll-item"><img src="images/Electronics2.png" alt="Product 2"></div>
-        <div class="scroll-item"><img src="images/Electronics3.png" alt="Product 3"></div>
-    </section>
+    <main>
+        <section class="scroll-container">
+            <article class="scroll-item">
+                <figure>
+                    <img src="images/Electronics1.png" alt="Exclusive Streetwear Collection">
+                    <figcaption>
+                        <h2>Exclusive Electronics Collection</h2>
+                        <p>Shop the latest electronics now.</p>
+                        <a href="clothing.html" class="shop-now">Shop Now</a>
+                    </figcaption>
+                </figure>
+            </article>
+            <article class="scroll-item">
+                <figure>
+                    <img src="images/Electronics2.png" alt="Trendy Fashion">
+                </figure>
+            </article>
+            <article class="scroll-item">
+                <figure>
+                    <img src="images/Electronics3.png" alt="Modern Wear">
+                </figure>
+            </article>
+        </section>
+    </main>
 
     <!-- Bottom Navigation -->
-    <footer class="bottom-nav">
-        <div class="nav-icon"><img src="images/home-icon.png" alt="Home"></div>
-        <div class="nav-icon"><img src="images/search-icon.png" alt="Search"></div>
-        <div class="nav-icon"><img src="images/user-icon.png" alt="Profile"></div>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html"><img src="images/home-icon.png" alt="Home"></a></li>
+                <li><a href="search.html"><img src="images/search-icon.png" alt="Search"></a></li>
+                <li><a href="profile.html"><img src="images/user-icon.png" alt="Profile"></a></li>
+            </ul>
+        </nav>
     </footer>
 
     <script src="scripts.js"></script>
