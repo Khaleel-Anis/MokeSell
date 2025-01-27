@@ -1,5 +1,5 @@
-const API_KEY = "YOUR_RESTDB_API_KEY";  // Replace with your RestDB.io API Key
-const API_URL = "https://your-database-id.restdb.io/rest/listings"; // Replace with your RestDB.io Database URL
+const API_KEY = "6796ddca9cbb2707d665c482";  // Replace with your RestDB.io API Key
+const API_URL = "https://fedassignment-6369.restdb.io/home/db/fedassignment-6369/cards/6796ecb94779de1b0000f7ad?devmode=true"; // Replace with your RestDB.io Database URL
 
 let listingsData = [];
 
