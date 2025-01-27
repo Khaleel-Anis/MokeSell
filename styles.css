@@ -106,8 +106,9 @@ header nav.top-nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.95); /* Brighter navbar */
+    backdrop-filter: blur(5px); /* Smooth blur effect */
+    padding: 15px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -120,7 +121,7 @@ header nav figure {
 }
 
 header nav figure img {
-    width: 50px;
+    width: 100px; /* Increased logo size */
     height: auto;
 }
 
@@ -153,13 +154,13 @@ header nav ul.nav-links li a:hover {
 header nav ul.nav-icons {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 40px; /* More space between icons */
     justify-content: flex-end;
 }
 
 header nav ul.nav-icons li img {
-    width: 24px;
-    height: 24px;
+    width: 26px; /* Slightly larger icons */
+    height: 26px;
     cursor: pointer;
 }
 
