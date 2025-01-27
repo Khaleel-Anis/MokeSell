@@ -1,5 +1,4 @@
 const API_KEY = "6796ddca9cbb2707d665c482";  // Your RestDB.io API Key
-const API_BASE_URL = "https://fedassignment-6369.restdb.io/rest"; // Your RestDB.io Database URL
 
 let listingsData = [];
 
@@ -214,5 +213,6 @@ function setupNavigationSwipe() {
                 scrollContainer.style.transform = `translateX(-${targetIndex * 100}%)`;
             }
         }, 300);
+
     }
 }
