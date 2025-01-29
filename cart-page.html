@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Metadata for character encoding and responsive viewport settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Link to external CSS file for styling the page -->
+  <link rel="stylesheet" href="cart_styles.css">
+  
+  <!-- Link to external JavaScript file (with defer attribute to load after the page) -->
+  <script src="scripts.js" defer></script>
+  
+  <!-- Title of the page, displayed in the browser tab -->
+  <title>Buy Page</title>
+</head>
+<body>
+  <!-- Header section with the website logo -->
+  <header>
+    <nav>
+      <!-- Link to homepage with the logo -->
+      <a href="index.html"><img src="images/logo-no-background.png" alt="MokeSell Logo" id="logo"></a>
+    </nav>
+  </header>
+
+  <!-- Main content section of the Buy Page -->
+  <main class="buy-page">
+    
+    <!-- Delivery information section -->
+    <section class="delivery-form">
+      <h2>1. Delivery</h2>
+      <!-- Delivery form for the user to fill out their delivery details -->
+      <form>
+        <fieldset>
+          <legend>Delivery Information</legend>
+          <!-- Country input field -->
+          <input type="text" placeholder="Country">
+          
+          <!-- First and Last name inputs in a row -->
+          <span class="form-row">
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="Last Name">
+          </span>
+          
+          <!-- Street address input field -->
+          <input type="text" placeholder="Street">
+          
+          <!-- Country Region input field -->
+          <span class="form-row">
+            <input type="text" placeholder="Country Region">
+          </span>
+          
+          <!-- Zip Code, City, and Contact Number in a row -->
+          <span class="form-row">
+            <input type="text" placeholder="Zip Code">
+            <input type="text" placeholder="Town/City">
+            <input type="text" placeholder="Contact Number">
+          </span>
+          
+          <!-- Button to save the form data and proceed to payment -->
+          <button type="submit" class="save-button">Save & Continue</button>
+        </fieldset>
+      </form>
+
+      <!-- Payment section, initially hidden -->
+      <h2>2. Payment</h2>
+      <form id="payment-form" class="hidden">
+        <fieldset>
+          <legend>Payment Details</legend>
+          
+          <!-- Name on card input field -->
+          <input type="text" placeholder="Name on card">
+          
+          <!-- Card Number, Expiration Date, and Security Code inputs in a row -->
+          <span class="form-row">
+            <input type="text" placeholder="Card Number">
+            <input type="text" placeholder="Expiration Date">
+            <input type="text" placeholder="Security Code">
+          </span>
+          
+          <!-- Country input for payment section -->
+          <input type="text" placeholder="Country">
+          
+          <!-- Button to save payment details and continue -->
+          <button type="submit" class="save-button">Save & Continue</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <!-- Basket Section showing the user's items and order summary -->
+    <section class="basket-section">
+      <h2>In Your Basket</h2>
+      
+      <!-- Item listed in the basket -->
+      <figure class="basket-item">
+        <img src="images/Clothing1.png" alt="Product Image">
+        <figcaption>
+          <p><strong>Clothing</strong></p>
+          <p>DGC Records</p>
+          <p>Vinyl</p>
+          <p>Quantity: 1</p>
+          <p><strong>S$150.20</strong></p>
+        </figcaption>
+      </figure>
+      
+      <!-- Horizontal line separating the item and total -->
+      <hr>
+      
+      <!-- Section showing the order summary -->
+      <section class="basket-total">
+        <p>Subtotal: <strong>S$150.20</strong></p>
+        <p>Shipping Fee: <strong>S$50.00</strong></p>
+        <p>Sales Tax: <strong>S$0.00</strong></p>
+        <hr>
+        <p>Total Amount: <strong>S$200.20</strong></p>
+      </section>
+      
+      <!-- Promo code form -->
+      <form>
+        <input type="text" placeholder="Promo Code?" class="promo-code">
+        <button type="submit" class="apply-button">Apply</button>
+      </form>        
+    </section>
+  </main>
+
+  <!-- Footer section with copyright info -->
+  <footer>
+    <p>© 2024 MokeSell</p>
+  </footer>
+</body>
+</html>
