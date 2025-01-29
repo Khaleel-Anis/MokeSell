@@ -1,0 +1,224 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+    height: 100px;
+}
+
+.logo {
+    width: 140px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.sell-button {
+    width: 120px;
+    height: 40px;
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    text-align: center;
+    flex-grow: 1;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.scroll-container {
+    position: relative;
+    padding: 140px 40px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.scroll-container h2 {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    z-index: 10;
+    color: black;
+    margin: 0;
+    pointer-events: none;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
+}
+
+.product-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    max-width: 800px;
+    padding-bottom: 10px;
+    position: relative;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+.product-grid::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
+}
+
+.product {
+    flex: 0 0 calc(25% - 20px);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: grey;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.scroll-button:hover {
+    opacity: 1;
+}
+
+.scroll-button.left {
+    left: 20px;  /* Was -50px */
+}
+
+.scroll-button.right {
+    right: 20px;  /* Was -50px */
+}
+
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ddd;
+    padding: 20px;
+    margin-top: 40px;
+
+}
+
+.footer-section {
+    flex: 1;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.copyright {
+    text-align: center;
+    padding: 10px;
+    background-color: #ddd;
+    margin-top: 10px;
+    margin-bottom: 80px; /* Add space for fixed icons */
+}
+
+.bottom-icons {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.bottom-icons figure {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
