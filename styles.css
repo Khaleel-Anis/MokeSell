@@ -26,7 +26,7 @@ body, html {
     position: relative;
     height: 100vh;
     overscroll-behavior-y: contain;
-    transition: transform 0.5s ease-in-out; /* Smooth swipe effect */
+    transition: transform 0.5s ease-in-out;
 }
 
 /* Hide Scrollbars */
@@ -34,22 +34,13 @@ body, html {
     display: none;
 }
 
-/* Individual Scroll Items (Each Image Section) */
+/* Individual Scroll Items */
 .scroll-item {
     width: 100%;
     height: 100vh;
     scroll-snap-align: start;
     position: relative;
     flex-shrink: 0;
-}
-
-/* Swipe Animations */
-.swipe-left {
-    transform: translateX(-100%);
-}
-
-.swipe-right {
-    transform: translateX(100%);
 }
 
 /* Images */
@@ -100,51 +91,45 @@ body, html {
     width: 100%;
     padding: 15px 30px;
     box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.8); /* Brighter white */
+    background: rgba(255, 255, 255, 0.8);
     position: fixed;
     top: 0;
     z-index: 1000;
 }
-
-
 
 /* Left Logo Section */
 .nav-left {
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Aligns logo to the left */
-    padding-left: 20px; /* Adds space from the edge */
+    justify-content: flex-start;
+    padding-left: 20px;
 }
 
 .nav-icons {
     display: flex;
     align-items: center;
-    gap: 15px; /* Reduce space between icons */
-    justify-content: flex-end; /* Keep icons aligned properly */
-    flex: none; /* Prevent excessive stretching */
-    position: relative; /* Ensure it stays within boundaries */
-    padding-right: 20px; /* Add some spacing from the edge */
+    gap: 15px;
+    justify-content: flex-end;
+    flex: none;
+    position: relative;
+    padding-right: 20px;
 }
-
-
 
 .logo {
-    width: 140px; /* Increase size */
-    height: auto; /* Maintain aspect ratio */
+    width: 140px;
+    height: auto;
 }
-
 
 /* Centered Navigation Links */
 .nav-links {
     list-style: none;
     padding: 0;
     display: flex;
-    justify-content: center; /* Centers the links */
-    flex-grow: 1; /* Ensures it takes up available space */
+    justify-content: center;
+    flex-grow: 1;
     gap: 30px;
 }
-
 
 .nav-links li {
     display: inline;
@@ -163,7 +148,7 @@ body, html {
     text-decoration: underline;
 }
 
-/* Right Icons Section (Wishlist & Cart Only) */
+/* Right Icons Section */
 .nav-icons {
     display: flex;
     align-items: center;
@@ -179,17 +164,68 @@ body, html {
     cursor: pointer;
 }
 
-/* Bottom Navigation */
+/* Bottom Navigation (Removed Red Background) */
 .bottom-nav {
     position: fixed;
-    bottom: 0;
+    bottom: 50px; /* Shift buttons higher */
     width: 100%;
-    background: red;
     display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
+    justify-content: center;
+    gap: 50px; /* Increase spacing between buttons */
+    background: transparent; /* Keep original no-background setting */
 }
+/* Circular Buttons */
+.nav-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+
+/* Button Hover Effect */
+.nav-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Adjust the icon size */
 .nav-icon img {
     width: 30px;
     height: 30px;
+}
+
+.shop-now {
+    display: inline-block;
+    background: red; /* Red background */
+    color: white;
+    padding: 12px 25px; /* Increased padding for better appearance */
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 25px; /* Rounded edges */
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none; /* Remove default link underline */
+}
+
+/* Hover Effect */
+.shop-now:hover {
+    background: darkred; /* Darker red when hovered */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Ensuring link inside the button doesn’t affect styling */
+.shop-now a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
