@@ -16,41 +16,57 @@ body, html {
     display: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Scroll-Snap Container */
 .scroll-container {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory; /* Keeps snap scrolling enabled */
     scrollbar-width: none;
     position: relative;
     height: 100vh;
     overscroll-behavior-y: contain;
-    transition: transform 0.5s ease-in-out;
-}
-
-/* Hide Scrollbars */
-.scroll-container::-webkit-scrollbar {
-    display: none;
+    width: 100vw;
+    scroll-padding-top: 1px; /* Prevents abrupt snapping */
 }
 
 /* Individual Scroll Items */
 .scroll-item {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    scroll-snap-align: start;
+    scroll-snap-align: start; /* Ensures each section snaps correctly */
     position: relative;
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: transform 0.7s ease-out; /* Creates a smooth movement into place */
+}
+.scroll-container {
+    scroll-behavior: auto; /* Ensures smooth snapping only happens programmatically */
+    scroll-snap-stop: always; /* Forces snap scrolling */
 }
 
 /* Images */
 .scroll-item img {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
+    transition: transform 0.4s ease-in-out;
 }
 
-/* Product Text Overlay */
+
+/* Hover zoom effect */
+.scroll-item img:hover {
+    transform: scale(1.02);
+}
+
+/* Product Text Overlay - Frosted Glass Effect */
 .product-text {
     position: absolute;
     top: 50%;
@@ -58,29 +74,64 @@ body, html {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
+    padding: 20px 30px;
+    border-radius: 15px;
+    width: 85%; /* Slightly wider for better text readability */
+    max-width: 600px;
+    backdrop-filter: blur(12px); /* Frosted glass effect */
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease-in-out;
 }
 
+/* Hover effect to make text stand out */
+.product-text:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Product Title */
 .product-text h2 {
     font-size: 36px;
     margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Product Description */
 .product-text p {
     font-size: 18px;
+    line-height: 1.4;
 }
 
+/* Stylish "Shop Now" Button */
 .shop-now {
+    display: inline-block;
     background: red;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border: none;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+/* Hover Effect */
+.shop-now:hover {
+    background: darkred;
+    transform: scale(1.05);
+}
+
+/* Ensure the link inside the button stays styled */
+.shop-now a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 /* Top Navigation */
@@ -128,7 +179,7 @@ body, html {
     display: flex;
     justify-content: center;
     flex-grow: 1;
-    gap: 30px;
+    gap: 40px;
 }
 
 .nav-links li {
@@ -140,12 +191,32 @@ body, html {
     color: black;
     font-weight: bold;
     font-size: 18px;
-    transition: text-decoration 0.3s ease;
-    cursor: pointer;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-links li a::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 0;
+    background: red;
+    transition: width 0.3s ease-in-out;
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%);
 }
 
 .nav-links li a:hover {
-    text-decoration: underline;
+    color: red;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
 }
 
 /* Right Icons Section */
@@ -164,16 +235,17 @@ body, html {
     cursor: pointer;
 }
 
-/* Bottom Navigation (Removed Red Background) */
+/* Bottom Navigation */
 .bottom-nav {
     position: fixed;
-    bottom: 50px; /* Shift buttons higher */
+    bottom: 50px;
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 50px; /* Increase spacing between buttons */
-    background: transparent; /* Keep original no-background setting */
+    gap: 50px;
+    background: transparent;
 }
+
 /* Circular Buttons */
 .nav-icon {
     display: flex;
@@ -188,7 +260,6 @@ body, html {
     text-decoration: none;
 }
 
-
 /* Button Hover Effect */
 .nav-icon:hover {
     transform: scale(1.1);
@@ -200,32 +271,19 @@ body, html {
     height: 30px;
 }
 
-.shop-now {
-    display: inline-block;
-    background: red; /* Red background */
-    color: white;
-    padding: 12px 25px; /* Increased padding for better appearance */
-    border: none;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 25px; /* Rounded edges */
-    text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
-    text-decoration: none; /* Remove default link underline */
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-text {
+        width: 90%;
+        padding: 15px;
+        backdrop-filter: blur(8px); /* Reduce blur effect on smaller screens */
+    }
 
-/* Hover Effect */
-.shop-now:hover {
-    background: darkred; /* Darker red when hovered */
-    transform: scale(1.05); /* Slight zoom effect */
-}
+    .product-text h2 {
+        font-size: 28px;
+    }
 
-/* Ensuring link inside the button doesn’t affect styling */
-.shop-now a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    height: 100%;
+    .product-text p {
+        font-size: 16px;
+    }
 }
