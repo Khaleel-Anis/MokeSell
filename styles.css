@@ -190,6 +190,11 @@ body, html {
     padding: 10px 0;
 }
 
+.bottom-nav nav {
+    display: flex;
+    justify-content: space-around;
+}
+
 .nav-icon img {
     width: 30px;
     height: 30px;
