@@ -211,7 +211,7 @@ footer ul li a {
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 20px;
+    gap: 100px;
     padding: 10px;
     border-radius: 20px;
 }
