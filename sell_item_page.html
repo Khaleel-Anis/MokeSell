@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List an Item</title>
+    <link rel="stylesheet" href="sell_item.css">
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="images/logo-no-background.png" alt="MokeSell Logo" class="logo">
+        </a>
+    </header>
+
+    <nav>
+        <h2>List an Item</h2>
+    </nav>
+
+    <main>
+        <section class="photo-upload">
+            <fieldset>
+                <legend>Select Photos</legend>
+                <p>or drag photos here <br> (up to 10 photos)</p>
+                <ul class="photo-grid">
+                    <li></li> <li></li> <li></li>
+                    <li></li> <li></li> <li></li>
+                </ul>
+            </fieldset>
+        </section>
+
+        <aside>
+            <section class="category">
+                <h3>Category</h3>
+                <ul>
+                    <li></li> <li></li> <li></li>
+                </ul>
+            </section>
+
+            <section class="condition">
+                <h3>Condition</h3>
+                <ul>
+                    <li>Brand New</li>
+                    <li>Like New</li>
+                    <li>Lightly Used</li>
+                    <li>Well Used</li>
+                    <li>Heavily Used</li>
+                </ul>
+            </section>
+
+            <section class="item-details">
+                <h3>Item Details</h3>
+                <form>
+                    <label>Listing Name <input type="text"></label>
+                    <label>Brand <input type="text"></label>
+                    <label>Description (optional)
+                        <textarea></textarea>
+                    </label>
+                </form>
+            </section>
+
+            <section class="price">
+                <h3>Price</h3>
+                <label>$$ <input type="text" placeholder="Price of your listing"></label>
+            </section>
+
+            <section class="deal-methods">
+                <h3>Deal Methods</h3>
+                <label>Meet up <input type="checkbox"></label>
+                <label>Delivery <input type="checkbox"></label>
+            </section>
+        </aside>
+    </main>
+
+    <footer>
+        <button>List Now</button>
+    </footer>
+</body>
+</html>
