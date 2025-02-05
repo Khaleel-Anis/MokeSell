@@ -52,6 +52,23 @@ fieldset {
     border: 2px solid gray;
 }
 
+#preview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    list-style: none;
+    padding: 10px;
+}
+
+#preview li {
+    width: 100px;
+    height: 100px;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .photo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

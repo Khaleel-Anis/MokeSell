@@ -7,75 +7,76 @@
     <link rel="stylesheet" href="sell_item.css">
 </head>
 <body>
-    <form action="submit_listing.php" method="POST" enctype="multipart/form-data">
-    <header>
-        <a href="index.html">
-            <img src="images/logo-no-background.png" alt="MokeSell Logo" class="logo">
-        </a>
-    </header>
 
-    <nav>
-        <h2>List an Item</h2>
-    </nav>
+    <form id="sellForm">
+        <header>
+            <a href="index.html">
+                <img src="images/logo-no-background.png" alt="MokeSell Logo" class="logo">
+            </a>
+        </header>
 
-    <main>
-        <section class="photo-upload">
-            <fieldset>
-                <legend>Select Photos</legend>
-                <p>Upload photos:</p>
-                <input type="file" name="images" accept="image/*" multiple>
-            </fieldset>
-        </section>
+        <nav>
+            <h2>List an Item</h2>
+        </nav>
 
-        <aside>
-            <section class="category">
-                <h3>Category</h3>
-                <label><input type="radio" name="category" value="clothing"> Clothing</label>
-                <label><input type="radio" name="category" value="luxury"> Luxury Items</label>
-                <label><input type="radio" name="category" value="electronics"> Electronics</label>
-            </section>
-            
-
-            <section class="condition">
-                <h3>Condition</h3>
-                <ul>
-                    <li>Brand New</li>
-                    <li>Like New</li>
-                    <li>Lightly Used</li>
-                    <li>Well Used</li>
-                    <li>Heavily Used</li>
-                </ul>
+        <main>
+            <section class="photo-upload">
+                <fieldset>
+                    <legend>Select Photos</legend>
+                    <p>Upload photos:</p>
+                    <input type="file" id="imageUpload" name="product_image" accept="image/*" multiple>
+                    <ul id="preview"></ul>
+                </fieldset>
             </section>
 
-            <section class="item-details">
-                <h3>Item Details</h3>
-                <form>
-                    <label>Listing Name <input type="text"></label>
-                    <label>Brand <input type="text"></label>
+            <aside>
+                <section class="category">
+                    <h3>Category</h3>
+                    <label><input type="radio" name="category" value="Clothing"> Clothing</label>
+                    <label><input type="radio" name="category" value="Luxury Items"> Luxury Items</label>
+                    <label><input type="radio" name="category" value="Electronics"> Electronics</label>
+                </section>
+
+                <section class="condition">
+                    <h3>Condition</h3>
+                    <ul>
+                        <li><label><input type="radio" name="condition" value="Brand New"> Brand New</label></li>
+                        <li><label><input type="radio" name="condition" value="Like New"> Like New</label></li>
+                        <li><label><input type="radio" name="condition" value="Lightly Used"> Lightly Used</label></li>
+                        <li><label><input type="radio" name="condition" value="Well Used"> Well Used</label></li>
+                        <li><label><input type="radio" name="condition" value="Heavily Used"> Heavily Used</label></li>
+                    </ul>
+                </section>
+
+                <section class="item-details">
+                    <h3>Item Details</h3>
+                    <label>Listing Name <input type="text" name="listing_name" required></label>
+                    <label>Brand <input type="text" name="brand"></label>
                     <label>Description (optional)
-                        <textarea></textarea>
+                        <textarea name="description"></textarea>
                     </label>
-                </form>
-            </section>
+                </section>
 
-            <section class="price">
-                <h3>Price</h3>
-                <label>Price ($) <input type="number" name="price" min="0" step="0.01" placeholder="Enter price"></label>
-            </section>
+                <section class="price">
+                    <h3>Price</h3>
+                    <label>Price ($) <input type="number" name="price" min="0" step="0.01" required></label>
+                </section>
 
-            <section class="deal-methods">
-                <h3>Deal Methods</h3>
-                <label>Meet up <input type="checkbox"></label>
-                <label>Delivery <input type="checkbox"></label>
-            </section>
-        </aside>
-    </main>
+                <section class="deal-methods">
+                    <h3>Deal Methods</h3>
+                    <label><input type="checkbox" name="deal_method" value="Meet up"> Meet up</label>
+                    <label><input type="checkbox" name="deal_method" value="Delivery"> Delivery</label>
+                </section>
+            </aside>
+        </main>
 
-    <footer>
-        <button>List Now</button>
-    </footer>
+        <footer>
+            <button type="submit">List Now</button>
+        </footer>
+
+    </form>
 
     <script src="sell_item.js"></script>
-    </form>
+
 </body>
 </html>
