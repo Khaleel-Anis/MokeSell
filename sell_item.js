@@ -1,86 +1,79 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Image Upload Preview
-    document.getElementById("imageUpload").addEventListener("change", function (event) {
-        const preview = document.getElementById("preview");
-        preview.innerHTML = ""; // Clear previous images
-        for (const file of event.target.files) {
-            const img = document.createElement("img");
-            img.src = URL.createObjectURL(file);
-            img.style.width = "100px";
-            img.style.margin = "5px";
-            
-            // Append image inside <ul> as <li>
-            const li = document.createElement("li");
-            li.appendChild(img);
-            preview.appendChild(li);
-        }
-    });
+document.getElementById("sellForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
+    console.log("Form Submitted!");
 
-    // Form Submission to RestDB
-    document.getElementById("sellForm").addEventListener("submit", async function (event) {
-        event.preventDefault(); // Prevent page refresh
+    const formData = new FormData(this);
+    const imageFile = document.getElementById("imageUpload").files[0];
 
-        const formData = new FormData(this);
-        const imageFile = document.getElementById("imageUpload").files[0];
+    let imageUrl = "";
+    if (imageFile) {
+        console.log("Uploading image to Cloudinary...");
+        imageUrl = await uploadImageToCloudinary(imageFile);
+        console.log("Image Uploaded:", imageUrl);
+    }
 
-        let imageUrl = "";
-        if (imageFile) {
-            imageUrl = await uploadImage(imageFile); // Upload image first
-        }
+    // Prepare product data for RestDB
+    const productData = {
+        name: formData.get("listing_name"),
+        description: formData.get("description"),
+        brand: formData.get("brand"),
+        price: parseFloat(formData.get("price")) || 0,
+        category: formData.get("category") || "Clothing",
+        condition: formData.get("condition") || "Brand New",
+        "deal methods": formData.getAll("deal_method").filter(Boolean),
+        "product image": imageUrl // Store Cloudinary URL in RestDB
+    };
 
-        // Prepare JSON payload
-        const productData = {
-            name: formData.get("listing_name"),
-            description: formData.get("description"),
-            brand: formData.get("brand"),
-            price: parseFloat(formData.get("price")),
-            category: formData.get("category"),
-            condition: formData.get("condition"),
-            "deal methods": formData.getAll("deal_method"),
-            "product image": imageUrl // Store uploaded image URL
-        };
+    console.log("Sending Product Data:", productData);
 
-        // Send Product Data to RestDB
-        const API_URL = "https://fedassignment-6369.restdb.io/rest/products";
-        const API_KEY = "YOUR_RESTDB_API_KEY"; // Replace with your actual API key
-
-        try {
-            const response = await fetch(API_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-apikey": API_KEY, // Authenticate API request
-                    "Cache-Control": "no-cache",
-                },
-                body: JSON.stringify(productData),
-            });
-
-            if (response.ok) {
-                alert("Product Listed Successfully!");
-                document.getElementById("sellForm").reset(); // Clear form after submission
-            } else {
-                alert("Failed to list product. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("An error occurred while submitting.");
-        }
-    });
-
-    // Function to Upload Image to RestDB
-    async function uploadImage(file) {
-        const formData = new FormData();
-        formData.append("image", file);
-
-        const response = await fetch("https://fedassignment-6369.restdb.io/media", {
+    try {
+        const response = await fetch("https://fedassignment-6369.restdb.io/rest/products", {
             method: "POST",
             headers: {
-                "x-apikey": "YOUR_RESTDB_API_KEY"
+                "Content-Type": "application/json",
+                "x-apikey": "6796ddca9cbb2707d665c482",
+                "Cache-Control": "no-cache",
             },
+            body: JSON.stringify(productData),
+        });
+
+        const responseData = await response.json();
+        console.log("Response from API:", responseData);
+
+        if (response.ok) {
+            alert("Product Listed Successfully!");
+            document.getElementById("sellForm").reset();
+        } else {
+            alert("Failed to list product. Check console for errors.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while submitting.");
+    }
+});
+
+async function uploadImageToCloudinary(file) {
+    const cloudName = "dt6xiwlhq"; // Your Cloudinary Cloud Name
+    const uploadPreset = "ml_default"; // Your Cloudinary Upload Preset
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
+
+    try {
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: "POST",
             body: formData
         });
 
+        if (!response.ok) {
+            throw new Error(`Image upload failed: ${response.statusText}`);
+        }
+
         const data = await response.json();
-        return data[0].url; // Returns image URL
+        return data.secure_url; // Returns the Cloudinary Image URL
+    } catch (error) {
+        console.error("Image Upload Error:", error);
+        return "";
     }
-});
+}
