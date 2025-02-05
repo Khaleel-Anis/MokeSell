@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="sell_item.css">
 </head>
 <body>
+    <form action="submit_listing.php" method="POST" enctype="multipart/form-data">
     <header>
         <a href="index.html">
             <img src="images/logo-no-background.png" alt="MokeSell Logo" class="logo">
@@ -21,21 +22,19 @@
         <section class="photo-upload">
             <fieldset>
                 <legend>Select Photos</legend>
-                <p>or drag photos here <br> (up to 10 photos)</p>
-                <ul class="photo-grid">
-                    <li></li> <li></li> <li></li>
-                    <li></li> <li></li> <li></li>
-                </ul>
+                <p>Upload photos:</p>
+                <input type="file" name="images" accept="image/*" multiple>
             </fieldset>
         </section>
 
         <aside>
             <section class="category">
                 <h3>Category</h3>
-                <ul>
-                    <li></li> <li></li> <li></li>
-                </ul>
+                <label><input type="radio" name="category" value="clothing"> Clothing</label>
+                <label><input type="radio" name="category" value="luxury"> Luxury Items</label>
+                <label><input type="radio" name="category" value="electronics"> Electronics</label>
             </section>
+            
 
             <section class="condition">
                 <h3>Condition</h3>
@@ -61,7 +60,7 @@
 
             <section class="price">
                 <h3>Price</h3>
-                <label>$$ <input type="text" placeholder="Price of your listing"></label>
+                <label>Price ($) <input type="number" name="price" min="0" step="0.01" placeholder="Enter price"></label>
             </section>
 
             <section class="deal-methods">
@@ -75,5 +74,8 @@
     <footer>
         <button>List Now</button>
     </footer>
+
+    <script src="sell_item.js"></script>
+    </form>
 </body>
 </html>
