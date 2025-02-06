@@ -54,7 +54,7 @@ function displayProducts(products, containerId) {
         productElement.innerHTML = `
             <p>Seller: Unknown</p>
             <p>Listed: Just now</p>
-            <a href="product_page.html">
+            <a href="product_page.html?id=${product._id}">
                 <figure class="product-image">
                     <img src="${product['product image']}" alt="${product.name}" width="150" height="150">
                 </figure>
