@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //[STEP 2]: Let's retrieve form data
     // For now, we assume all information is valid
     // You are to do your own data validation
+    let contactName = document.getElementById("contact-name").value;
     let contactEmail = document.getElementById("contact-email").value;
     let contactPassword = document.getElementById("contact-password").value;
     let contactBirthday = document.getElementById("contact-birthday").value;
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //[STEP 3]: Get form values when the user clicks on send
     // Adapted from restdb API
     let jsondata = {
+      "name": contactName,
       "email": contactEmail,
       "password": contactPassword,
       "birthday": contactBirthday,
