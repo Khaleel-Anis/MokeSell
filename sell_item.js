@@ -1,3 +1,34 @@
+document.addEventListener("DOMContentLoaded", async function () {
+    let userID = localStorage.getItem("userID");
+
+    if (!userID) {
+        alert("Please log in first!");
+        window.location.href = "login-page.html"; // Redirect to login page
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://fedassignment-6369.restdb.io/rest/user-account/${userID}`, {
+            method: "GET",
+            headers: {
+                "x-apikey": "6796ddca9cbb2707d665c482",
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch user data");
+        }
+
+        const user = await response.json();
+        document.getElementById("sellerName").value = user.name;
+        document.getElementById("sellerEmail").value = user.email;
+    } catch (error) {
+        console.error("Error fetching user details:", error);
+    }
+});
+
+
 document.getElementById("sellForm").addEventListener("submit", async function (event) {
     event.preventDefault();
     console.log("Form Submitted!");
@@ -14,6 +45,8 @@ document.getElementById("sellForm").addEventListener("submit", async function (e
 
     // Prepare product data for RestDB
     const productData = {
+        seller_name: document.getElementById("sellerName").value,
+        seller_email: document.getElementById("sellerEmail").value,
         name: formData.get("listing_name"),
         description: formData.get("description"),
         brand: formData.get("brand"),
@@ -21,7 +54,7 @@ document.getElementById("sellForm").addEventListener("submit", async function (e
         category: formData.get("category") || "Clothing",
         condition: formData.get("condition") || "Brand New",
         "deal methods": formData.getAll("deal_method").filter(Boolean),
-        "product image": imageUrl // Store Cloudinary URL in RestDB
+        "product image": imageUrl
     };
 
     console.log("Sending Product Data:", productData);
