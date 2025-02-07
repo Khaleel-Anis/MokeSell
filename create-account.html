@@ -8,6 +8,25 @@
 </head>
 <body>
 
+    <!-- Header Section (Same as Login Page) -->
+    <header>
+        <nav class="top-nav">
+            <div class="nav-left">
+                <a href="index.html">
+                    <img src="images/logo-no-background.png" alt="MokeSell Logo" class="logo">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Back Button (Arrow Only) -->
+    <a href="index.html" class="back-button">
+        <img src="images/back-arrow.png" alt="Back">
+    </a>
+
+    <!-- Horizontal Line -->
+    <div class="header-line"></div>
+
     <!-- Create Account Container -->
     <div class="form-box">
         <h1>CREATE AN ACCOUNT</h1>
@@ -18,42 +37,37 @@
 
         <!-- Form -->
         <form id="contact-form" method="POST">
-            <!-- Name Field -->
             <label for="contact-name">Full Name</label>
             <input type="text" id="contact-name" name="name" placeholder="Enter your full name" required>
-        
-            <!-- Email Field -->
+
             <label for="contact-email">Email Address</label>
             <input type="email" id="contact-email" name="email" placeholder="Enter a valid email" required>
-        
-            <!-- Password Field -->
+
             <label for="contact-password">Password</label>
             <input type="password" id="contact-password" name="password" placeholder="Enter a secure password" required>
-        
-            <!-- Birthday Field -->
+
             <label for="contact-birthday">Birthday</label>
             <input type="date" id="contact-birthday" name="birthday" required>
-        
-            <!-- Postal Code Field -->
+
             <label for="contact-postal">Postal Code</label>
             <input type="text" id="contact-postal" name="postal_code" placeholder="Enter your postal code" required>
-             
+
             <!-- Gender Selection -->
             <label for="contact-gender">GENDER</label>
             <div class="gender-container" id="contact-gender">
                 <label class="gender-option">
                     <input type="radio" name="gender" value="male" required>
-                    <span class="radio-btn"></span> Male
+                    Male
                 </label>
 
                 <label class="gender-option">
                     <input type="radio" name="gender" value="female">
-                    <span class="radio-btn"></span> Female
+                    Female
                 </label>
 
                 <label class="gender-option">
                     <input type="radio" name="gender" value="prefer-not">
-                    <span class="radio-btn"></span> Prefer Not To State
+                    Prefer Not To State
                 </label>
             </div>
 
