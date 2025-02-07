@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const API_URL = "https://fedassignment-6369.restdb.io/rest/products";
     const API_KEY = "6796ddca9cbb2707d665c482";
-
-    // Get Product ID from URL
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
+
+    let product = {};  // ✅ Declare product variable here
 
     if (!productId) {
         document.querySelector('main').innerHTML = "<p>Product not found.</p>";
@@ -20,9 +20,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             },
         });
 
-        const product = await response.json();
+        product = await response.json();  // ✅ Assign product inside try block
 
-        // Update Product Details
         document.getElementById('product-name').textContent = product.name || 'No Name Available';
         document.getElementById('product-price').textContent = `S$${product.price.toFixed(2)}` || 'Price Unavailable';
 
@@ -46,12 +45,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p>${dealMethods}</p>
         `;
 
-        // Seller Information
         document.getElementById('seller-name').textContent = product.seller || 'Unknown Seller';
 
-        // Product Images
         const imageSlider = document.getElementById('image-slider');
-        imageSlider.innerHTML = '';  // Clear placeholder
+        imageSlider.innerHTML = '';
 
         const images = Array.isArray(product['product image'])
             ? product['product image']
@@ -59,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         images.forEach(image => {
             const imgElement = document.createElement('img');
-            imgElement.src = image || 'images/placeholder-product.png';
+            imgElement.src = image || 'images/placeholder-product.png';  // ✅ Check for placeholder
             imgElement.alt = product.name;
             imgElement.classList.add('main-image');
             imageSlider.appendChild(imgElement);
@@ -69,4 +66,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("Error fetching product:", error);
         document.querySelector('main').innerHTML = "<p>Error loading product details.</p>";
     }
+
+    // ✅ Add-to-Cart Function (outside try, after product is defined)
+    document.getElementById("buyButton").addEventListener("click", () => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const productToAdd = {
+            id: product._id,
+            name: product.name,
+            price: product.price,
+            image: product["product image"] || 'images/placeholder-product.png'
+        };
+
+        cart.push(productToAdd);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        console.log("Product added to cart:", productToAdd);  // ✅ Debug
+        alert(`${product.name} has been added to your cart!`);
+        window.location.href = "cart-page.html";
+    });
 });
