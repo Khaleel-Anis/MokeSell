@@ -7,10 +7,7 @@
   
   <!-- Link to external CSS file for styling the page -->
   <link rel="stylesheet" href="cart_styles.css">
-  
-  <!-- Link to external JavaScript file (with defer attribute to load after the page) -->
-  <script src="scripts.js" defer></script>
-  
+
   <!-- Title of the page, displayed in the browser tab -->
   <title>Buy Page</title>
 </head>
@@ -92,29 +89,17 @@
       <h2>In Your Basket</h2>
       
       <!-- Item listed in the basket -->
-      <figure class="basket-item">
-        <img src="images/Clothing1.png" alt="Product Image">
-        <figcaption>
-          <p><strong>Clothing</strong></p>
-          <p>DGC Records</p>
-          <p>Vinyl</p>
-          <p>Quantity: 1</p>
-          <p><strong>S$150.20</strong></p>
-        </figcaption>
-      </figure>
-      
-      <!-- Horizontal line separating the item and total -->
+      <section id="basket-items"></section>
       <hr>
       
-      <!-- Section showing the order summary -->
       <section class="basket-total">
-        <p>Subtotal: <strong>S$150.20</strong></p>
-        <p>Shipping Fee: <strong>S$50.00</strong></p>
-        <p>Sales Tax: <strong>S$0.00</strong></p>
+        <p>Subtotal: <strong id="subtotal">S$0.00</strong></p>
+        <p>Shipping Fee: <strong id="shipping">S$0.00</strong></p>
+        <p>Sales Tax: <strong id="tax">S$0.00</strong></p>
         <hr>
-        <p>Total Amount: <strong>S$200.20</strong></p>
+        <p>Total Amount: <strong id="total">S$0.00</strong></p>
       </section>
-      
+    
       <!-- Promo code form -->
       <form>
         <input type="text" placeholder="Promo Code?" class="promo-code">
@@ -123,9 +108,13 @@
     </section>
   </main>
 
+  <button class="save-button" id="checkoutBtn">Proceed to Checkout</button>
+
   <!-- Footer section with copyright info -->
   <footer>
     <p>© 2024 MokeSell</p>
   </footer>
+  
+  <script src="cart_script.js" defer></script>
 </body>
 </html>

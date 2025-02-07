@@ -15,53 +15,46 @@
     </header>
     
     <main>
+        <!-- Product Gallery (Dynamic Images) -->
         <section class="product-gallery">
             <button class="slider-button prev" aria-label="Previous Image">&#10094;</button>
             <section class="image-container">
-                <section class="image-slider">
-                    <img src="images/Clothing1.png" alt="Product Image 1" class="main-image">
-                    <img src="images/product2.jpg" alt="Product Image 2" class="main-image">
-                    <img src="images/product3.jpg" alt="Product Image 3" class="main-image">
-                    <img src="images/product4.jpg" alt="Product Image 4" class="main-image">
-                    <img src="images/product5.jpg" alt="Product Image 5" class="main-image">
+                <section class="image-slider" id="image-slider">
+                    <!-- Dynamic images will be inserted here -->
                 </section>
             </section>
             <button class="slider-button next" aria-label="Next Image">&#10095;</button>
         </section>
     
         <section class="main-content">
+            <!-- Product Details -->
             <section class="product-details">
-                <h1>Product Name</h1>
-                <p class="price">S$160</p>
-                <section class="details">
-                    <h2>Details</h2>
-                    <p><strong>Condition:</strong> Brand New</p>
-                    <p><strong>Type:</strong> Product Type</p>
-                    <p><strong>Category:</strong> Product Category</p>
+                <h1 id="product-name">Loading Product...</h1>
+                <p class="price" id="product-price"></p>
+
+                <section class="details" id="product-details">
+                    <!-- Dynamic Details will be inserted here -->
                 </section>
-                <section class="description">
-                    <h2>Description</h2>
-                    <p>Product Description</p>
+
+                <section class="description" id="product-description">
+                    <!-- Dynamic Description -->
                 </section>
-                <section class="deal-method">
-                    <h2>Deal Method</h2>
-                    <p>Meet-up</p>
-                    <p>Address</p>
+
+                <section class="deal-method" id="deal-methods">
+                    <!-- Dynamic Deal Methods -->
                 </section>
             </section>
     
-            <section class="seller-info">
+            <!-- Seller Information -->
+            <section class="seller-info" id="seller-info">
                 <section class="seller-profile">
-                    <img src="images/seller-profile.png" alt="Seller Profile Picture" class="seller-pic">
-                    <p><strong>Seller Username</strong></p>
+                    <img src="images/seller-profile.png" alt="Seller Profile Picture" class="seller-pic" id="seller-pic">
+                    <p><strong id="seller-name">Seller Name</strong></p>
                 </section>
-                <p>5.0 ★★★★★ (20 reviews)</p>
-                <a href="cart-page.html">
-                    <button class="buy">Buy</button>
-                </a>
+                <button class="buy" id="buyButton">Buy</button>
                 <button class="offer">Make Offer</button>
-                <p class="returns"><strong>Returns and Refunds:</strong> Depends on the seller’s decision.</p>
-                <p class="safety"><strong>Safety Policy:</strong> Pay only at the meet-up.</p>
+                <p class="returns"><strong>Returns:</strong> Depends on the seller.</p>
+                <p class="safety"><strong>Safety Policy:</strong> Pay only at meet-up.</p>
             </section>
         </section>
     </main>
