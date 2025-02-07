@@ -41,10 +41,12 @@
             <figure class="subcategory"><img src="placeholder.jpg" alt="Subcategory"></figure>
         </section>
         
-        <form class="search-bar">
-            <input type="text" placeholder="Search by Keyword" aria-label="Search by Keyword">
-            <button type="submit">Search</button>
+        <form class="search-bar" onsubmit="return false;">
+            <input type="text" id="searchInput" placeholder="Search by Keyword" aria-label="Search by Keyword">
+            <button type="button" id="searchButton">Search</button>
         </form>
+        <section id="searchResults"></section>
+
         <section class="bottom-icons">
             <a href="index.html" aria-label="Home">
                 <img src="images/home-icon.png" alt="Home Icon">
@@ -90,5 +92,7 @@
         </section>
         <p class="copyright">Copyright &copy; MokeSell, Ltd. All rights reserved.</p>
     </footer>
+
+    <script src="search_page_script.js" defer></script>
 </body>
 </html>
