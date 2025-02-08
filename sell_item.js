@@ -1,14 +1,14 @@
-//  Declare userID globally
+// Get the logged-in user's ID
 const userID = localStorage.getItem("userID") || sessionStorage.getItem("userID");
 
 document.addEventListener("DOMContentLoaded", function () {
     if (!userID) {
         alert("Please log in to sell an item.");
-        window.location.href = "login-page.html";  // Redirect to login if not logged in
+        window.location.href = "login-page.html";
         return;
     }
 
-    // ✅ Fetch and display logged-in user's info
+    // Fetch and display logged-in user's info
     fetch(`https://fedassignment-6369.restdb.io/rest/user-account/${userID}`, {
         method: "GET",
         headers: {
@@ -18,29 +18,33 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then(response => response.json())
     .then(user => {
-        document.getElementById("sellerName").value = user.name;  //  Storing seller name
-        document.getElementById("sellerEmail").value = user.email;  //  Storing seller email
+        document.getElementById("sellerName").value = user.name;
+        document.getElementById("sellerEmail").value = user.email;
     })
-    .catch(error => {
-        console.error("Error fetching user data:", error);
-    });
+    .catch(error => console.error("Error fetching user data:", error));
 });
+
+//  Handle Product Submission
 
 document.getElementById("sellForm").addEventListener("submit", async function (event) {
     event.preventDefault();
     console.log("Form Submitted!");
 
     const formData = new FormData(this);
-    const imageFile = document.getElementById("imageUpload").files[0];
+    const imageFiles = document.getElementById("imageUpload").files;
 
-    let imageUrl = "";
-    if (imageFile) {
-        console.log("Uploading image to Cloudinary...");
-        imageUrl = await uploadImageToCloudinary(imageFile);
-        console.log("Image Uploaded:", imageUrl);
+    let imageUrls = [];
+
+    if (imageFiles.length > 0) {
+        console.log("Uploading images to Cloudinary...");
+
+        for (let file of imageFiles) {
+            const imageUrl = await uploadImageToCloudinary(file);
+            console.log("Image Uploaded:", imageUrl);
+            imageUrls.push(imageUrl);
+        }
     }
 
-    // ✅ Using the global userID directly
     const productData = {
         seller_name: document.getElementById("sellerName").value,
         seller_email: document.getElementById("sellerEmail").value,
@@ -51,8 +55,8 @@ document.getElementById("sellForm").addEventListener("submit", async function (e
         category: formData.get("category") || "Clothing",
         condition: formData.get("condition") || "Brand New",
         "deal methods": formData.getAll("deal_method").filter(Boolean),
-        "product image": imageUrl,
-        sellerId: userID,               //  Using the globally declared userID
+        "product image": imageUrls,  //  Store all uploaded image URLs
+        sellerId: userID,
         timestamp: new Date().toISOString(),
     };
 
@@ -84,9 +88,11 @@ document.getElementById("sellForm").addEventListener("submit", async function (e
     }
 });
 
+//  Upload Image to Cloudinary
+
 async function uploadImageToCloudinary(file) {
-    const cloudName = "dt6xiwlhq"; // Your Cloudinary Cloud Name
-    const uploadPreset = "ml_default"; // Your Cloudinary Upload Preset
+    const cloudName = "dt6xiwlhq";
+    const uploadPreset = "ml_default";
 
     const formData = new FormData();
     formData.append("file", file);
@@ -103,7 +109,7 @@ async function uploadImageToCloudinary(file) {
         }
 
         const data = await response.json();
-        return data.secure_url; // Returns the Cloudinary Image URL
+        return data.secure_url;  //  Return Cloudinary URL
     } catch (error) {
         console.error("Image Upload Error:", error);
         return "";
