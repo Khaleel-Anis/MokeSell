@@ -1,33 +1,30 @@
-document.addEventListener("DOMContentLoaded", async function () {
-    let userID = localStorage.getItem("userID");
+//  Declare userID globally
+const userID = localStorage.getItem("userID") || sessionStorage.getItem("userID");
 
+document.addEventListener("DOMContentLoaded", function () {
     if (!userID) {
-        alert("Please log in first!");
-        window.location.href = "login-page.html"; // Redirect to login page
+        alert("Please log in to sell an item.");
+        window.location.href = "login-page.html";  // Redirect to login if not logged in
         return;
     }
 
-    try {
-        const response = await fetch(`https://fedassignment-6369.restdb.io/rest/user-account/${userID}`, {
-            method: "GET",
-            headers: {
-                "x-apikey": "6796ddca9cbb2707d665c482",
-                "Content-Type": "application/json"
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch user data");
-        }
-
-        const user = await response.json();
-        document.getElementById("sellerName").value = user.name;
-        document.getElementById("sellerEmail").value = user.email;
-    } catch (error) {
-        console.error("Error fetching user details:", error);
-    }
+    // ✅ Fetch and display logged-in user's info
+    fetch(`https://fedassignment-6369.restdb.io/rest/user-account/${userID}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-apikey": "6796ddca9cbb2707d665c482",
+        },
+    })
+    .then(response => response.json())
+    .then(user => {
+        document.getElementById("sellerName").value = user.name;  //  Storing seller name
+        document.getElementById("sellerEmail").value = user.email;  //  Storing seller email
+    })
+    .catch(error => {
+        console.error("Error fetching user data:", error);
+    });
 });
-
 
 document.getElementById("sellForm").addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -43,7 +40,7 @@ document.getElementById("sellForm").addEventListener("submit", async function (e
         console.log("Image Uploaded:", imageUrl);
     }
 
-    // Prepare product data for RestDB
+    // ✅ Using the global userID directly
     const productData = {
         seller_name: document.getElementById("sellerName").value,
         seller_email: document.getElementById("sellerEmail").value,
@@ -54,7 +51,9 @@ document.getElementById("sellForm").addEventListener("submit", async function (e
         category: formData.get("category") || "Clothing",
         condition: formData.get("condition") || "Brand New",
         "deal methods": formData.getAll("deal_method").filter(Boolean),
-        "product image": imageUrl
+        "product image": imageUrl,
+        sellerId: userID,               //  Using the globally declared userID
+        timestamp: new Date().toISOString(),
     };
 
     console.log("Sending Product Data:", productData);

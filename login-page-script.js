@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        // API Request to Get All Users
-        fetch("https://fedassignment-6369.restdb.io/rest/user-account", {
+        // API Request to Verify User Credentials
+        fetch(`https://fedassignment-6369.restdb.io/rest/user-account?q={"email":"${email}","password":"${password}"}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -19,18 +19,17 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(users => {
-            // Check if user exists with the provided credentials
-            const user = users.find(user => user.email === email && user.password === password);
+            if (users.length > 0) {
+                const user = users[0];
 
-            if (user) {
-                // ✅ Store session info
-                localStorage.setItem("user_id", user._id);
-                localStorage.setItem("user_email", user.email);
+                //  Store session info consistently
+                localStorage.setItem("userID", user._id);
+                localStorage.setItem("userEmail", user.email);
+                localStorage.setItem("userName", user.name);
 
-                // ✅ Redirect to homepage after login
+                // Redirect to homepage after login
                 window.location.href = "index.html";
             } else {
-                // ❌ Invalid credentials
                 alert("Invalid email or password. Please try again.");
             }
         })
@@ -40,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Show/Hide Password
+    // ✅ Show/Hide Password Toggle
     document.getElementById("show-password").addEventListener("change", function () {
         const passwordInput = document.getElementById("password");
         passwordInput.type = this.checked ? "text" : "password";
