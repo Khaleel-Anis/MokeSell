@@ -87,7 +87,7 @@ async function displayProducts(products, containerId) {
             <p>Listed: Just now</p>
             <a href="product_page.html?id=${product._id}">
                 <figure class="product-image">
-                    <img src="${mainImage}" alt="${product.name}" width="150" height="150">  <!-- ✅ Display first image -->
+                    <img src="${mainImage}" alt="${product.name}" width="150" height="150">  <!--  Display first image -->
                 </figure>
             </a>
             <figcaption>
