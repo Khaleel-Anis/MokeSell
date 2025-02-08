@@ -29,61 +29,63 @@
                 <li class="section-title">MEMBERSHIP</li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">Coupons</a></li>
-                <li><a href="#">Purchase history</a></li>
-                <li><a href="#">Order history</a></li>
+                <li><a href="#">Purchase History</a></li>
+                <li><a href="#">Order History</a></li>
             </ul>
             
             <ul>
-                <li class="section-title">Profile settings</li>
-                <li><a href="#">Edit profile</a></li>
-                <li><a href="#">Address book</a></li>
-                <li><a href="#">Change my password</a></li>
-                <li><a href="#">My credit/debit cards</a></li>
-                <li><a href="#">Delete account</a></li>
+                <li class="section-title">PROFILE SETTINGS</li>
+                <li><a href="#">Edit Profile</a></li>
+                <li><a href="#">Address Book</a></li>
+                <li><a href="#">Change My Password</a></li>
+                <li><a href="#">My Credit/Debit Cards</a></li>
+                <li><a href="#">Delete Account</a></li>
             </ul>
         </aside>
 
         <!-- Profile Details -->
         <main class="profile-details">
             <h2>PROFILE</h2>
-            <div class="profile-box">
+            <div class="profile-box" id="profile-box">
                 <div class="profile-row">
                     <div class="profile-section">
                         <h3>EMAIL ADDRESS</h3>
-                        <p><a href="mailto:email@gmail.com">email@gmail.com</a></p>
+                        <p id="email">Loading...</p>
                     </div>
                     <div class="profile-section">
                         <h3>CONTACT NUMBER</h3>
-                        <p>85452365</p>
+                        <p id="contact-number">Loading...</p>
                     </div>
                 </div>
 
                 <div class="profile-row">
                     <div class="profile-section">
                         <h3>NAME</h3>
-                        <p>Lebron James</p>
+                        <p id="name">Loading...</p>
                     </div>
                     <div class="profile-section">
                         <h3>BIRTHDAY</h3>
-                        <p>22/05/1985</p>
+                        <p id="birthday">Loading...</p>
                     </div>
                 </div>
 
                 <div class="profile-row">
                     <div class="profile-section">
                         <h3>ADDRESS</h3>
-                        <p>Bukit Panjang St 12, Block 189, #08-100, Singapore</p>
+                        <p id="address">Loading...</p>
                     </div>
                     <div class="profile-section">
                         <h3>GENDER</h3>
-                        <p>Male</p>
+                        <p id="gender">Loading...</p>
                     </div>
                 </div>
 
                 <div class="profile-section">
                     <h3>POSTAL CODE</h3>
-                    <p>650189</p>
+                    <p id="postal-code">Loading...</p>
                 </div>
+
+                <button id="logout-btn">Logout</button>
             </div>
         </main>
     </div>
@@ -92,7 +94,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Profile settings</h4>
+                <h4>Profile Settings</h4>
                 <ul>
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">Return Policy</a></li>
@@ -127,5 +129,45 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const APIKEY = "6796ddca9cbb2707d665c482";
+            const userId = localStorage.getItem("user_id");
+
+            if (!userId) {
+                window.location.href = "login.html"; // Redirect to login if not logged in
+                return;
+            }
+
+            const API_URL = `https://fedassignment-6369.restdb.io/rest/user-account/${userId}`;
+
+            // Fetch user data from RestDB
+            fetch(API_URL, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-apikey": APIKEY,
+                    "Cache-Control": "no-cache"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("email").textContent = data.email || "Not Provided";
+                document.getElementById("contact-number").textContent = data.contact_number || "Not Provided";
+                document.getElementById("name").textContent = data.name || "Not Provided";
+                document.getElementById("birthday").textContent = data.birthday || "Not Provided";
+                document.getElementById("address").textContent = data.address || "Not Provided";
+                document.getElementById("gender").textContent = data.gender || "Not Provided";
+                document.getElementById("postal-code").textContent = data.postal_code || "Not Provided";
+            })
+            .catch(error => console.error("Error fetching profile:", error));
+
+            // Logout functionality
+            document.getElementById("logout-btn").addEventListener("click", function () {
+                localStorage.removeItem("user_id");
+                window.location.href = "index.html"; // Redirect to homepage after logout
+            });
+        });
+    </script>
 </body>
 </html>
