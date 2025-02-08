@@ -7,10 +7,34 @@ body {
     height: 100vh;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+    height: 100px;
+}
+
+.logo {
+    width: 140px;
+    height: auto;
+    border-radius: 5px;
+}
+
 .sidebar {
     width: 25%;
     background-color: #fff;
     border-right: 1px solid #ddd;
+    padding: 20px;
+    padding-top: 120px;  /*  Add padding to offset the fixed header */
     overflow-y: auto;
 }
 
@@ -21,17 +45,10 @@ body {
     background-color: #fff;
     border-left: 1px solid #ddd;
     padding: 20px;
+    padding-top: 120px;  /*  Add padding to offset the fixed header */
     overflow-y: auto;
     height: 100vh;
-}
-
-.chat-header {
-    padding: 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    box-sizing: border-box;  /* Ensure padding doesn't affect the layout size */
 }
 
 .chat-messages {
@@ -42,7 +59,10 @@ body {
     gap: 10px;
     overflow-y: auto;
     background-color: #f9f9f9;
+    max-height: calc(100vh - 180px); /*  Adjust to account for header and footer */
 }
+
+
 
 .message {
     max-width: 60%;
@@ -129,3 +149,4 @@ button:hover {
     font-size: 0.9em;
     color: #777;
 }
+
