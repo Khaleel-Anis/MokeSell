@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const API_URL = "https://fedassignment-6369.restdb.io/rest/products";
+    const USER_API_URL = "https://fedassignment-6369.restdb.io/rest/user-account";
     const API_KEY = "6796ddca9cbb2707d665c482";
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
 
-    let product = {};  // ✅ Declare product variable here
+    let product = {};
 
     if (!productId) {
         document.querySelector('main').innerHTML = "<p>Product not found.</p>";
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             },
         });
 
-        product = await response.json();  // ✅ Assign product inside try block
+        product = await response.json();
 
         document.getElementById('product-name').textContent = product.name || 'No Name Available';
         document.getElementById('product-price').textContent = `S$${product.price.toFixed(2)}` || 'Price Unavailable';
@@ -45,7 +46,26 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p>${dealMethods}</p>
         `;
 
-        document.getElementById('seller-name').textContent = product.seller || 'Unknown Seller';
+        // ✅ Fetch Seller Details Using sellerId
+        if (product.sellerId) {
+            const sellerResponse = await fetch(`${USER_API_URL}/${product.sellerId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-apikey": API_KEY,
+                },
+            });
+
+            if (sellerResponse.ok) {
+                const seller = await sellerResponse.json();
+                document.getElementById('seller-name').textContent = seller.name || 'Unknown Seller';
+                document.getElementById('seller-pic').src = seller.profileImage || 'images/seller-profile.png';
+            } else {
+                document.getElementById('seller-name').textContent = 'Unknown Seller';
+            }
+        } else {
+            document.getElementById('seller-name').textContent = 'Unknown Seller';
+        }
 
         const imageSlider = document.getElementById('image-slider');
         imageSlider.innerHTML = '';
@@ -56,18 +76,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         images.forEach(image => {
             const imgElement = document.createElement('img');
-            imgElement.src = image || 'images/placeholder-product.png';  // ✅ Check for placeholder
+            imgElement.src = image || 'images/placeholder-product.png';
             imgElement.alt = product.name;
             imgElement.classList.add('main-image');
             imageSlider.appendChild(imgElement);
         });
 
     } catch (error) {
-        console.error("Error fetching product:", error);
+        console.error("Error fetching product or seller details:", error);
         document.querySelector('main').innerHTML = "<p>Error loading product details.</p>";
     }
 
-    // ✅ Add-to-Cart Function (outside try, after product is defined)
     document.getElementById("buyButton").addEventListener("click", () => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -81,7 +100,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         cart.push(productToAdd);
         localStorage.setItem("cart", JSON.stringify(cart));
 
-        console.log("Product added to cart:", productToAdd);  // ✅ Debug
         alert(`${product.name} has been added to your cart!`);
         window.location.href = "cart-page.html";
     });
