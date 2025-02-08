@@ -73,6 +73,12 @@ async function displayProducts(products, containerId) {
     for (const product of products) {
         const sellerName = await getSellerName(product.sellerId);  //  Fetch seller name
 
+        //  Handle multiple images (display the first one)
+        const productImages = Array.isArray(product['product image']) 
+            ? product['product image'] 
+            : [product['product image']];
+        const mainImage = productImages[0] || "images/placeholder-product.png";  //  Fallback if no image
+
         const productElement = document.createElement("article");
         productElement.classList.add("product");
 
@@ -81,7 +87,7 @@ async function displayProducts(products, containerId) {
             <p>Listed: Just now</p>
             <a href="product_page.html?id=${product._id}">
                 <figure class="product-image">
-                    <img src="${product['product image']}" alt="${product.name}" width="150" height="150">
+                    <img src="${mainImage}" alt="${product.name}" width="150" height="150">  <!-- ✅ Display first image -->
                 </figure>
             </a>
             <figcaption>
