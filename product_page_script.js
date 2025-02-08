@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p>${dealMethods}</p>
         `;
 
-        // ✅ Fetch Seller Details Using sellerId
+        //  Fetch Seller Details Using sellerId
         if (product.sellerId) {
             const sellerResponse = await fetch(`${USER_API_URL}/${product.sellerId}`, {
                 method: "GET",
@@ -86,6 +86,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("Error fetching product or seller details:", error);
         document.querySelector('main').innerHTML = "<p>Error loading product details.</p>";
     }
+
+    document.getElementById("makeOfferButton").addEventListener("click", () => {
+        const buyerId = localStorage.getItem("userID");
+        const sellerId = product.sellerId;
+    
+        if (!buyerId) {
+            alert("Please log in to make an offer.");
+            window.location.href = "login-page.html";
+            return;
+        }
+    
+        // Redirect to chat page with buyerId and sellerId
+        window.location.href = `chat_page.html?buyerId=${buyerId}&sellerId=${sellerId}`;
+    });
+    
 
     document.getElementById("buyButton").addEventListener("click", () => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
