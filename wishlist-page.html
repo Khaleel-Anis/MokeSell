@@ -18,24 +18,9 @@
     </header>
 
     <main>
-        <section class="wishlist-grid">
-            <article class="product-card">
-                <header class="product-header">
-                    <h2 class="seller">Seller Username</h2>
-                    <time class="listed-date">2 days ago</time>
-                    <button class="remove-item" aria-label="Remove item">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </header>
-                <img src="placeholder.jpg" alt="Product image" class="product-image">
-                <section class="product-info">
-                    <h3 class="product-name">Product Name</h3>
-                    <p class="product-price">$99.99</p>
-                    <p class="product-condition">Like New</p>
-                </section>
-            </article>
-
-            <!-- Repeat other product articles -->
+        <h1>Your Wishlist</h1>
+        <section id="wishlist-items" class="wishlist-grid">
+            <!-- Wishlist items will be dynamically loaded here -->
         </section>
     </main>
 
@@ -85,5 +70,6 @@
     </footer>
     <p class="copyright">&copy; 2023 MokeSell, Ltd. All rights reserved.</p>
 
+    <script src="wishlist_page_script.js"></script>
 </body>
 </html>
