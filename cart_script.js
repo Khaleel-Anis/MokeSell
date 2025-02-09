@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const mainImage = images[0]; // Display the first image
 
         itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${mainImage}" alt="${item.name}">
             <figcaption>
                 <p><strong>${item.name}</strong></p>
                 <p>Price: S$${item.price.toFixed(2)}</p>
@@ -149,10 +149,31 @@ document.querySelector(".apply-button").addEventListener("click", (e) => {
     document.getElementById("total").textContent = `S$${total.toFixed(2)}`;
 });
 
+//  Loader Functions
+function showLoader() {
+    const loader = document.createElement("div");
+    loader.id = "loader";
+    loader.textContent = "Processing your order...";
+    loader.style.position = "fixed";
+    loader.style.top = "50%";
+    loader.style.left = "50%";
+    loader.style.transform = "translate(-50%, -50%)";
+    loader.style.padding = "20px";
+    loader.style.backgroundColor = "#fff";
+    loader.style.border = "2px solid black";
+    loader.style.zIndex = "9999";
+    document.body.appendChild(loader);
+}
+
+function hideLoader() {
+    const loader = document.getElementById("loader");
+    if (loader) loader.remove();
+}
+
 //  Checkout Logic
 document.getElementById("checkoutBtn").addEventListener("click", async () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const API_KEY = "67a87718f247e57112117e1a"; // Replace with your actual API key
+    const API_KEY = "67a87718f247e57112117e1a";
     const API_URL = "https://mokesell-cd4f.restdb.io/rest/products";
 
     if (cart.length === 0) {
@@ -162,8 +183,8 @@ document.getElementById("checkoutBtn").addEventListener("click", async () => {
 
     showLoader();
 
-    for (const item of cart) {
-        try {
+    try {
+        for (const item of cart) {
             const response = await fetch(`${API_URL}/${item.id}`, {
                 method: "DELETE",
                 headers: {
@@ -177,14 +198,16 @@ document.getElementById("checkoutBtn").addEventListener("click", async () => {
             } else {
                 console.error(`Failed to remove product ${item.name}. Status: ${response.status}`);
             }
-        } catch (error) {
-            console.error(`Error removing product ${item.name}:`, error);
         }
+
+        hideLoader();
+
+        alert("Thank you for your purchase!");
+        localStorage.removeItem("cart");
+        window.location.href = "index.html"; //  Redirect should work now
+    } catch (error) {
+        console.error("Checkout Error:", error);
+        alert("Something went wrong during checkout. Please try again.");
+        hideLoader();
     }
-
-    hideLoader();
-
-    alert("Thank you for your purchase!");
-    localStorage.removeItem("cart"); // Clear the cart after checkout
-    window.location.href = "confirmation.html"; // Redirect to confirmation page
 });
