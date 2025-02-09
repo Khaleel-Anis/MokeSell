@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    // Dynamically detect category based on the page title
     let category = "";
     if (document.title.includes("Clothing")) {
         category = "Clothing";
@@ -8,15 +7,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     } else if (document.title.includes("Luxury")) {
         category = "Luxury Items";
     } else if (document.title.includes("All Products")) {
-        category = ""; // Fetch all products without filtering
+        category = "";
     }
 
     console.log(`Fetching '${category || "All"}' products...`);
 
     const API_URL = "https://fedassignment-6369.restdb.io/rest/products";
-    const API_KEY = "6796ddca9cbb2707d665c482"; // Your RestDB API key
+    const API_KEY = "6796ddca9cbb2707d665c482";
 
-    // Adjust the query based on the category
     const query = category ? `?q=${encodeURIComponent(JSON.stringify({ category }))}` : "";
     const requestUrl = `${API_URL}${query}`;
 
@@ -41,22 +39,55 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 });
 
-function displayProducts(products, containerId) {
+async function getSellerName(sellerId) {
+    const API_KEY = "6796ddca9cbb2707d665c482";
+    const USER_API_URL = `https://fedassignment-6369.restdb.io/rest/user-account/${sellerId}`;
+
+    try {
+        const response = await fetch(USER_API_URL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "x-apikey": API_KEY,
+            },
+        });
+
+        if (response.ok) {
+            const user = await response.json();
+            return user.name || "Unknown Seller";
+        } else {
+            return "Unknown Seller";
+        }
+    } catch (error) {
+        console.error("Error fetching seller data:", error);
+        return "Unknown Seller";
+    }
+}
+
+async function displayProducts(products, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
     container.innerHTML = ""; // Clear existing products
 
-    products.forEach(product => {
+    for (const product of products) {
+        const sellerName = await getSellerName(product.sellerId);  //  Fetch seller name
+
+        //  Handle multiple images (display the first one)
+        const productImages = Array.isArray(product['product image']) 
+            ? product['product image'] 
+            : [product['product image']];
+        const mainImage = productImages[0] || "images/placeholder-product.png";  //  Fallback if no image
+
         const productElement = document.createElement("article");
         productElement.classList.add("product");
 
         productElement.innerHTML = `
-            <p>Seller: Unknown</p>
+            <p>Seller: ${sellerName}</p>  <!--  Display seller name -->
             <p>Listed: Just now</p>
             <a href="product_page.html?id=${product._id}">
                 <figure class="product-image">
-                    <img src="${product['product image']}" alt="${product.name}" width="150" height="150">
+                    <img src="${mainImage}" alt="${product.name}" width="150" height="150">  <!--  Display first image -->
                 </figure>
             </a>
             <figcaption>
@@ -67,5 +98,5 @@ function displayProducts(products, containerId) {
         `;
 
         container.appendChild(productElement);
-    });
+    }
 }

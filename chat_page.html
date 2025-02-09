@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Page</title>
+    <link rel="stylesheet" href="chat_page_styles.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <img src="images/logo-no-background.png" alt="MokeSell Logo" class="logo">
+        </a>
+    </header>
+
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li class="chat-list-item">
+                    <img src="user1.jpg" alt="User 1">
+                    <section class="chat-details">
+                        <strong class="name">User 1</strong>
+                        <small class="last-message">Last message preview</small>
+                    </section>
+                </li>
+                <li class="chat-list-item">
+                    <img src="user2.jpg" alt="User 2">
+                    <section class="chat-details">
+                        <strong class="name">User 2</strong>
+                        <small class="last-message">Another message preview</small>
+                    </section>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="chat-window">
+
+        <section class="chat-messages" id="chatWindow">
+            <article class="message buyer">Hello, I'm interested in your product!</article>
+            <article class="message seller">Hi! Yes, it's still available.</article>
+        </section>
+
+        <form class="chat-form" id="chatForm">
+            <input type="text" id="messageInput" placeholder="Type your message here..." required>
+            <button type="submit">Send</button>
+        </form>
+    </main>
+
+    <script src="chat_page_script.js"></script>
+</body>
+
+</html>
