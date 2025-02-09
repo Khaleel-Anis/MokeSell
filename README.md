@@ -1,56 +1,53 @@
 # MokeSell
-Website for the E-Commerce Web Application, MokeSell
-
-One or two paragraphs providing an overview of your project. Tell us about your project.
-
-Essentially, this part is your sales pitch.
+MokeSell is an intuitive e-commerce web application designed for seamless buying and selling of products online. It supports categories like Clothing, Luxury Items, and Electronics, providing both buyers and sellers with a user-friendly platform.
 
 # Design Process
-Provide us insights about your design process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+MokeSell was crafted with simplicity and functionality at its core. The goal was to create a responsive, easy-to-navigate application that enhances the online shopping experience.
+User Stories:
+As a buyer, I want to search for products quickly to find items that meet my needs.
+As a seller, I want to list items easily, including uploading multiple images.
+As a user, I want to manage my cart and wishlist effectively.
+As a buyer, I want to chat with sellers to negotiate deals or ask questions.
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
+# Wireframes & Mockups:
+Initial sketches and wireframes were created to outline the layout.
+Prototypes were refined based on user feedback.
 
-As a user type, I want to perform an action, so that I can achieve a goal.
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory) Include the Adobe XD wireframe as a folder. You can include the XD share url.
-
-Features
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
-
+# Features
 Existing Features
-Feature 1 - allows users X to achieve Y, by having them fill out Z
-...
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+Product Listing: Sellers can add new items with multiple images and details.
+Dynamic Product Display: Products are displayed based on categories.
+Search Functionality: Real-time filtering to find products quickly.
+Cart Management: Add, remove, and checkout items. Checkout removes items from the database.
+Wishlist: Save products for future reference.
+Chat System: Direct messaging between buyers and sellers.
+User Authentication: Secure login and session management.
 
-Features Left to Implement
-Another feature idea
-Technologies Used
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+Features to be Implemented
+Order History: Track past purchases.
+Rating System: Leave reviews for products.
+Advanced Search Filters: For a more refined search experience.
 
-# JQuery
-The project uses JQuery to simplify DOM manipulation.
+# Technologies Used
+Frontend: HTML, CSS, JavaScript
+Backend: RestDB for database management
+Image Hosting: Cloudinary
+Animations: Lottie for smooth page transitions
 Assistive AI
-In this section you should document the process of using AI tools eg, ChatGPT, Gemini etc to help you with the development of features/functionalities of your web application. (Failure to document your use of AI tools will result in loss of marks.) Example below:
-
-Spotify API: ChatGPT was used to help with the implementation of the Spotify API (include screenshots of generated AI codes.)
 
 # Testing
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+Manual Testing
+Login/Logout: Verified with valid and invalid credentials.
+Product Listings: Ensured data integrity with multiple image uploads.
+Cart Operations: Tested add/remove/check-out functionalities.
+Chat Feature: Confirmed message delivery and reception.
+Responsive Design: Checked across devices and browsers.
+Bugs Identified
+CORS Issues: Resolved by adjusting RestDB API rules.
+Session Persistence: Fixed by properly handling localStorage and sessionStorage.
+Image Display: Addressed issues with multiple images during rendering.
 
-Contact form:
-Go to the "Contact Us" page
-Try to submit the empty form and verify that an error message about the required fields appears
-Try to submit the form with an invalid email address and verify that a relevant error message appears
-Try to submit the form with all inputs valid and verify that a success message appears.
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
-
-Credits
-Content
-The text for section Y was copied from the Wikipedia article Z
-Media
-The photos used in this site were obtained from ...
-Acknowledgements
-I received inspiration for this project from X
+# Credits
+Content: Written for the MokeSell project.
+Media: Product images hosted via Cloudinary.
+Inspiration: E-commerce websites like Uniqlo, Carousell, Shopee and Shein
