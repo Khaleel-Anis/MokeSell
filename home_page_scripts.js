@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
 
             if (userId) {
-                // ✅ Redirect to profile page if logged in
+                //  Redirect to profile page if logged in
                 window.location.href = "profile-page.html";
             } else {
-                // ❌ Redirect to login page if not logged in
+                //  Redirect to login page if not logged in
                 window.location.href = "login-page.html";
             }
         });
