@@ -2,7 +2,7 @@
 ![logo-no-background](https://github.com/user-attachments/assets/2fbd8391-22ff-44a3-8ba2-953671213cb0) <br>
 
 # MokeSell
-MokeSell is an intuitive e-commerce web application designed for seamless buying and selling of products online. It supports categories like Clothing, Luxury Items, and Electronics, providing both buyers and sellers with a user-friendly platform.
+MokeSell is an intuitive e-commerce web application designed for seamless buying and selling of products online. It supports categories like Clothing, Luxury Items, and Electronics, providing both buyers and sellers with a user-friendly platform. Through our platform, we want users to experience an easy way of using an online shopping platform with an minimalistic approach and simple features to add together for cohesiveness and interactiveness.
 
 # Design Process
 MokeSell was crafted with simplicity and functionality at its core. The goal was to create a responsive, easy-to-navigate application that enhances the online shopping experience.
@@ -28,6 +28,7 @@ Existing Features
 - Wishlist: Save products for future reference.
 - Chat System: Direct messaging between buyers and sellers.
 - User Authentication: Secure login and session management.
+- Gamification : Spin the wheel for a chance for discounts.
 
 Features to be Implemented
 - Order History: Track past purchases.
@@ -47,13 +48,19 @@ Manual Testing
 - Cart Operations: Tested add/remove/check-out functionalities.
 - Chat Feature: Confirmed message delivery and reception.
 - Responsive Design: Checked across devices and browsers.
+- Delete Account : Checked whether account was deleted from database.            
+- Spin the wheel : Checked whether promo code would work and whether if it was saved differently on different accounts.
 
 # Bugs Identified
 - CORS Issues: Resolved by adjusting RestDB API rules.
 - Session Persistence: Fixed by properly handling localStorage and sessionStorage.
 - Image Display: Addressed issues with multiple images during rendering.
+- Change password was not working as intended
+- Database would not save user details accordingly
+- Profile page data would stay on loading for too long
 
 # Credits
 - Content: Written for the MokeSell project.
 - Media: Product images hosted via Cloudinary.
 - Inspiration: E-commerce websites like Uniqlo, Carousell, Shopee and Shein
+- UI: One UI from Uiverse.io
