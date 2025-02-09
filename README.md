@@ -67,3 +67,6 @@ Manual Testing
 
 # Github Link
 - https://github.com/Khaleel-Anis/MokeSell
+
+# MokeSell Pitch Video Link
+- https://www.youtube.com/watch?v=goNPfWXd8p0&ab_channel=KhaleelAnis
