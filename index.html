@@ -29,13 +29,12 @@
                 <a href="cart-page.html">
                     <img src="images/cart-icon.png" alt="Cart" class="icon">
                 </a>
-            
-                <!-- ✅ Add Spin Wheel Icon Here -->
+
+                <!-- ✅ Spin Wheel Icon -->
                 <a href="#" id="spin-wheel-icon">
                     <img src="images/spin-wheel-icon.png" alt="Spin the Wheel" class="icon">
                 </a>
             </nav>
-            
         </nav>
     </header>
 
@@ -85,27 +84,26 @@
         <section id="lottie-animation" style="width: 100%; height: 100%;"></section>
     </section>    
 
- <!-- 🎯 Spin the Wheel Container -->
-<div id="spin-wheel-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
-    <div class="wheel-background">
-        <div class="pointer">🔻</div> <!-- Moved above the wheel -->
-        <div class="wheel-container">
-            <div class="wheel" id="wheel">
-                <div class="segment">5% OFF</div>
-                <div class="segment">10% OFF</div>
-                <div class="segment">Free Shipping</div>
-                <div class="segment">Try Again</div>
-                <div class="segment">15% OFF</div>
-                <div class="segment">20% OFF</div>
+    <!-- 🎯 Spin the Wheel Container -->
+    <div id="spin-wheel-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
+        <div class="wheel-background">
+            <div class="pointer">🔻</div>
+            <div class="wheel-container">
+                <div class="wheel" id="wheel">
+                    <div class="segment">5% OFF</div>
+                    <div class="segment">10% OFF</div>
+                    <div class="segment">Free Shipping</div>
+                    <div class="segment">Try Again</div>
+                    <div class="segment">15% OFF</div>
+                    <div class="segment">20% OFF</div>
+                </div>
             </div>
+            <button id="spin-button">Spin the Wheel</button>
+            <p id="result-message"></p>
+            <p id="promo-code" style="font-weight: bold; color: green;"></p>
+            <button class="close-wheel">Close</button>
         </div>
-        <button id="spin-button">Spin the Wheel</button>
-        <p id="result-message"></p>
-        <p id="promo-code" style="font-weight: bold; color: green;"></p>
-        <button class="close-wheel">Close</button>
     </div>
-    
-
 
     <script src="home_page_scripts.js"></script>
 </body>
