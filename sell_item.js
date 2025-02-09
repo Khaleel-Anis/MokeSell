@@ -1,7 +1,8 @@
-// Get the logged-in user's ID
-const userID = localStorage.getItem("userID") || sessionStorage.getItem("userID");
+let userID;  // Global declaration
 
 document.addEventListener("DOMContentLoaded", function () {
+    userID = localStorage.getItem("user_id") || sessionStorage.getItem("user_id");  //  No 'const' here
+
     if (!userID) {
         alert("Please log in to sell an item.");
         window.location.href = "login-page.html";
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error fetching user data:", error));
 });
+
 
 //  Handle Product Submission
 
