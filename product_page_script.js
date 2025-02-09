@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p>${dealMethods}</p>
         `;
 
-        //  Fetch Seller Details Using sellerId
         if (product.sellerId) {
             const sellerResponse = await fetch(`${USER_API_URL}/${product.sellerId}`, {
                 method: "GET",
@@ -82,6 +81,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageSlider.appendChild(imgElement);
         });
 
+        loadSimilarListings(product.category, product._id);
+
     } catch (error) {
         console.error("Error fetching product or seller details:", error);
         document.querySelector('main').innerHTML = "<p>Error loading product details.</p>";
@@ -90,17 +91,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("makeOfferButton").addEventListener("click", () => {
         const buyerId = localStorage.getItem("userID");
         const sellerId = product.sellerId;
-    
+
         if (!buyerId) {
             alert("Please log in to make an offer.");
             window.location.href = "login-page.html";
             return;
         }
-    
-        // Redirect to chat page with buyerId and sellerId
+
         window.location.href = `chat_page.html?buyerId=${buyerId}&sellerId=${sellerId}`;
     });
-    
 
     document.getElementById("buyButton").addEventListener("click", () => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -118,4 +117,39 @@ document.addEventListener('DOMContentLoaded', async () => {
         alert(`${product.name} has been added to your cart!`);
         window.location.href = "cart-page.html";
     });
+
+    async function loadSimilarListings(category, currentProductId) {
+        try {
+            const response = await fetch(`${API_URL}?q={"category":"${category}"}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-apikey": API_KEY,
+                },
+            });
+
+            const products = await response.json();
+            const similarListingsContainer = document.querySelector(".similar-listings");
+            similarListingsContainer.innerHTML = "";
+
+            products.filter(item => item._id !== currentProductId).forEach(item => {
+                const listing = document.createElement("article");
+                listing.classList.add("listing");
+
+                listing.innerHTML = `
+                    <figure class="listing-image">
+                        <img src="${Array.isArray(item['product image']) ? item['product image'][0] : item['product image'] || 'images/placeholder-product.png'}" alt="${item.name}">
+                    </figure>
+                    <p class="product-name">${item.name}</p>
+                    <p class="product-price">S$${item.price.toFixed(2)}</p>
+                    <p class="product-condition">Condition: ${item.condition || 'N/A'}</p>
+                `;
+
+                similarListingsContainer.appendChild(listing);
+            });
+
+        } catch (error) {
+            console.error("Error loading similar listings:", error);
+        }
+    }
 });
