@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const APIKEY = "6796ddca9cbb2707d665c482";
+    const APIKEY = "67a87718f247e57112117e1a";
     const userId = localStorage.getItem("user_id");
 
     if (!userId) {
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    const API_URL = `https://fedassignment-6369.restdb.io/rest/user-account/${userId}`;
+    const API_URL = `https://mokesell-cd4f.restdb.io/rest/user-account/${userId}`;
 
     // Fetch user data from RestDB
     fetch(API_URL, {

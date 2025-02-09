@@ -338,3 +338,109 @@ button:hover svg {
         font-size: 16px;
     }
 }
+
+/* ✅ Wheel Background */
+.wheel-background {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 350px;
+    position: relative;
+}
+
+/* 🎯 Wheel Design */
+#wheel {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 8px solid #ff4d4d;
+    position: relative;
+    overflow: hidden;
+    transform: rotate(0deg);
+    transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+    background: white;
+}
+
+/* ✅ Segment Styles */
+.segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background: #ffcccb;
+    transform-origin: 100% 100%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    writing-mode: horizontal-tb;
+}
+
+/* Alternating Segment Colors */
+.segment:nth-child(odd) {
+    background: #ffe6e6;
+}
+
+/* ✅ Correct Segment Rotations */
+.segment:nth-child(1) { transform: rotate(0deg); }
+.segment:nth-child(2) { transform: rotate(60deg); }
+.segment:nth-child(3) { transform: rotate(120deg); }
+.segment:nth-child(4) { transform: rotate(180deg); }
+.segment:nth-child(5) { transform: rotate(240deg); }
+.segment:nth-child(6) { transform: rotate(300deg); }
+
+/* 🔺 Pointer Style */
+.pointer {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: red;
+    z-index: 20;
+}
+
+/* Button Styles */
+#spin-button, .close-wheel {
+    margin: 10px;
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+#spin-button:hover, .close-wheel:hover {
+    background: darkred;
+}
+
+/* Result & Promo Code Display */
+#result-message {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
+#promo-code {
+    background: #e6ffe6;
+    padding: 8px 15px;
+    border: 2px dashed green;
+    margin-top: 5px;
+    border-radius: 5px;
+    display: none;
+}
+
+

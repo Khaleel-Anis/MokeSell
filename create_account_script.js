@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const APIKEY = "6796ddca9cbb2707d665c482";
+  const APIKEY = "67a87718f247e57112117e1a";
 
   document.getElementById("contact-submit").addEventListener("click", function (e) {
     e.preventDefault();
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
       body: JSON.stringify(jsondata),
     };
 
-    fetch("https://fedassignment-6369.restdb.io/rest/user-account", settings)
+    fetch("https://mokesell-cd4f.restdb.io/rest/user-account", settings)
       .then(response => response.json())
       .then(data => {
         console.log(data);

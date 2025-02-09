@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const APIKEY = "6796ddca9cbb2707d665c482";
+    const APIKEY = "67a87718f247e57112117e1a";
 
     document.querySelector("form").addEventListener("submit", function (e) {
         e.preventDefault();
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById("password").value;
 
         // API Request to Verify User Credentials
-        fetch(`https://fedassignment-6369.restdb.io/rest/user-account?q={"email":"${email}","password":"${password}"}`, {
+        fetch(`https://mokesell-cd4f.restdb.io/rest/user-account?q={"email":"${email}","password":"${password}"}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

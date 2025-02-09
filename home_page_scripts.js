@@ -58,3 +58,60 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const spinButton = document.getElementById("spin-button");
+    const wheel = document.getElementById("wheel");
+    const resultMessage = document.getElementById("result-message");
+    const promoCodeElement = document.getElementById("promo-code");
+    const closeWheelButton = document.querySelector(".close-wheel");
+    const spinWheelIcon = document.getElementById("spin-wheel-icon");
+    const spinWheelContainer = document.getElementById("spin-wheel-container");
+
+    // ✅ Open the Spin Wheel when clicking the icon
+    spinWheelIcon.addEventListener("click", () => {
+        spinWheelContainer.style.display = "flex";
+    });
+
+    // ✅ Close the Spin Wheel
+    closeWheelButton.addEventListener("click", () => {
+        spinWheelContainer.style.display = "none";
+    });
+
+    // ✅ Spin Logic
+    spinButton.addEventListener("click", () => {
+        const degrees = Math.floor(3600 + Math.random() * 360);
+        wheel.style.transform = `rotate(${degrees}deg)`;
+
+        setTimeout(() => {
+            const normalizedDegrees = degrees % 360;
+            const prizeIndex = Math.floor((normalizedDegrees / 360) * 6);
+            const prizes = ["5% OFF", "10% OFF", "Free Shipping", "Try Again", "15% OFF", "20% OFF"];
+            const prize = prizes[(6 - prizeIndex) % 6];
+
+            resultMessage.textContent = `🎉 Congrats! You've won: ${prize}`;
+
+            if (prize !== "Try Again") {
+                const promoCode = generatePromoCode();
+                promoCodeElement.textContent = `🎁 Promo Code: ${promoCode}`;
+                promoCodeElement.style.display = "block";
+                localStorage.setItem("voucher_code", promoCode);
+            } else {
+                promoCodeElement.style.display = "none";
+            }
+        }, 4000);
+    });
+
+    // ✅ Promo Code Generator
+    function generatePromoCode() {
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        let code = "";
+        for (let i = 0; i < 8; i++) {
+            code += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return code;
+    }
+});
+
+
+
+
