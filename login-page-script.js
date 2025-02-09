@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // API Request to Verify User Credentials
         fetch(`https://mokesell-cd4f.restdb.io/rest/user-account?q={"email":"${email}","password":"${password}"}`, {
             method: "GET",
+            mode: "cors",
             headers: {
                 "Content-Type": "application/json",
                 "x-apikey": APIKEY,
