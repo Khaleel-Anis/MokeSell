@@ -52,9 +52,19 @@ function displayResults(products) {
         const productElement = document.createElement("div");
         productElement.classList.add("product");
 
+        //  Handle multiple images
+        let productImages = product['product image'];
+        let firstImage = '';
+
+        if (Array.isArray(productImages) && productImages.length > 0) {
+            firstImage = productImages[0];  // Display the first image
+        } else {
+            firstImage = productImages || 'images/placeholder.jpg';  // Fallback for single image or no image
+        }
+
         productElement.innerHTML = `
             <h3>${product.name}</h3>
-            <img src="${product['product image'] || 'images/placeholder.jpg'}" alt="${product.name}" width="150">
+            <img src="${firstImage}" alt="${product.name}" width="150">
             <p>Price: S$${product.price.toFixed(2)}</p>
             <p>Category: ${product.category}</p>
             <a href="product_page.html?id=${product._id}">View Product</a>
