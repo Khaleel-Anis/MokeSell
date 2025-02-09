@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("gender").textContent = data.gender || "Not Provided";
         document.getElementById("postal-code").textContent = data.postal_code || "Not Provided";
 
-        displayPromoCodes(); // ✅ Display promo codes after fetching user data
+        displayPromoCodes();
     })
     .catch(error => console.error("Error fetching profile:", error));
 
@@ -43,22 +43,93 @@ document.addEventListener("DOMContentLoaded", function () {
         const userId = localStorage.getItem("user_id");
         const promoCodeList = document.getElementById("promo-code-list");
         const storedPromoCodes = JSON.parse(localStorage.getItem(`promoCodes_${userId}`)) || [];
-    
-        promoCodeList.innerHTML = "";  // Clear existing codes
-    
+
+        promoCodeList.innerHTML = ""; // Clear existing codes
+
         if (storedPromoCodes.length === 0) {
             promoCodeList.innerHTML = "<li>No promo codes available right now.</li>";
         } else {
-            storedPromoCodes.forEach(code => {
+            storedPromoCodes.forEach(item => {
                 const listItem = document.createElement("li");
-                listItem.textContent = `🎁 ${code}`;
+                listItem.innerHTML = `🎁 <strong>${item.code}</strong> - <em>${item.discount}</em>`;
                 promoCodeList.appendChild(listItem);
             });
         }
     }
-    
-    displayPromoCodes();  // Load promo codes on page load
-    
+
+    document.addEventListener("DOMContentLoaded", displayPromoCodes);
+
+    // ✅ Change Password Functionality
+    document.getElementById("change-password-btn").addEventListener("click", function () {
+        const newPassword = document.getElementById("new-password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+
+        if (newPassword.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return;
+        }
+        if (newPassword !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        const requestBody = {
+            password: newPassword  // ✅ Make sure this matches the password field name in RestDB
+        };
+
+        fetch(API_URL, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "x-apikey": APIKEY,
+                "Cache-Control": "no-cache"
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to change password. Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(() => {
+            alert("✅ Password successfully changed.");
+            document.getElementById("new-password").value = "";
+            document.getElementById("confirm-password").value = "";
+        })
+        .catch(error => {
+            console.error("Error changing password:", error);
+            alert("❌ Error changing password. Please try again later.");
+        });
+    });
+
+    // ✅ Delete Account Functionality
+    document.getElementById("delete-account-btn").addEventListener("click", function () {
+        const confirmation = confirm("⚠️ Are you sure you want to delete your account? This action cannot be undone.");
+
+        if (confirmation) {
+            fetch(API_URL, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-apikey": APIKEY,
+                    "Cache-Control": "no-cache"
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to delete account. Status: ${response.status}`);
+                }
+                alert("✅ Your account has been deleted.");
+                localStorage.removeItem("user_id");
+                window.location.href = "index.html";
+            })
+            .catch(error => {
+                console.error("Error deleting account:", error);
+                alert("❌ Error deleting account. Please try again later.");
+            });
+        }
+    });
 });
 
 // ✅ Tab Navigation Logic

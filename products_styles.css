@@ -222,3 +222,28 @@ footer ul li a {
     background-color: #ccc;
     border-radius: 50%;
 }
+
+/* ✅ Bottom Navigation with Circular Icons */
+.bottom-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;   /* White circular background */
+    border-radius: 50%;        /* Makes the background circular */
+    width: 60px;               /* Circle size */
+    height: 60px;              /* Circle size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Subtle shadow for depth */
+    transition: transform 0.3s ease;          /* Smooth scaling effect */
+    text-decoration: none;     /* Removes underline */
+}
+
+/* ✅ Hover Effect */
+.bottom-icons a:hover {
+    transform: scale(1.1);     /* Slight zoom effect on hover */
+}
+
+/* ✅ Adjust Icon Size Inside the Circle */
+.bottom-icons a img {
+    width: 30px;               /* Icon size */
+    height: 30px;
+}

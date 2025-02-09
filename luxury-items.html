@@ -29,6 +29,11 @@
                 <a href="cart-page.html">
                     <img src="images/cart-icon.png" alt="Cart" class="icon">
                 </a>
+
+                <!-- ✅ Spin Wheel Icon (Added) -->
+                <a href="#" id="spin-wheel-icon">
+                    <img src="images/spin-wheel-icon.png" alt="Spin the Wheel" class="icon">
+                </a>
             </nav>
         </nav>
     </header>
@@ -43,14 +48,12 @@
                 <a href="luxury-items-products.html">
                     <button>
                         <div class="default-btn">
-                            <!-- Eye Icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" stroke="#ffffff" viewBox="0 0 24 24" height="20" width="20">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                             <span>Curious?</span>
                         </div>
-                
                         <div class="hover-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="#ffcccb" height="20" width="20" viewBox="0 0 24 24">
                                 <circle r="1" cy="21" cx="9"></circle>
@@ -84,9 +87,31 @@
         </a>  
     </footer>
 
+    <!-- Page Transition -->
     <section id="page-transition" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: white; z-index: 9999;">
         <section id="lottie-animation" style="width: 100%; height: 100%;"></section>
-    </section>    
+    </section>
+
+    <!-- ✅ Spin-the-Wheel (Added) -->
+    <div id="spin-wheel-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
+        <div class="wheel-wrapper">
+            <div class="pointer"></div> <!-- Pointer -->
+
+            <div class="wheel" id="wheel">
+                <div class="segment" style="transform: rotate(0deg);"><span>20% OFF</span></div>
+                <div class="segment" style="transform: rotate(60deg);"><span>5% OFF</span></div>
+                <div class="segment" style="transform: rotate(120deg);"><span>10% OFF</span></div>
+                <div class="segment" style="transform: rotate(180deg);"><span>Free Shipping</span></div>
+                <div class="segment" style="transform: rotate(240deg);"><span>Try Again</span></div>
+                <div class="segment" style="transform: rotate(300deg);"><span>15% OFF</span></div>
+            </div>
+
+            <button id="spin-button">Spin the Wheel</button>
+            <p id="result-message"></p>
+            <p id="promo-code" style="font-weight: bold; color: green;"></p>
+            <button class="close-wheel">Close</button>
+        </div>
+    </div>
 
     <script src="home_page_scripts.js"></script>
 </body>

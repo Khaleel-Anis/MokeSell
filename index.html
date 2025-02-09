@@ -84,26 +84,30 @@
         <section id="lottie-animation" style="width: 100%; height: 100%;"></section>
     </section>    
 
-    <!-- 🎯 Spin the Wheel Container -->
     <div id="spin-wheel-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
-        <div class="wheel-background">
-            <div class="pointer">🔻</div>
-            <div class="wheel-container">
-                <div class="wheel" id="wheel">
-                    <div class="segment">5% OFF</div>
-                    <div class="segment">10% OFF</div>
-                    <div class="segment">Free Shipping</div>
-                    <div class="segment">Try Again</div>
-                    <div class="segment">15% OFF</div>
-                    <div class="segment">20% OFF</div>
-                </div>
+        <div class="wheel-wrapper">
+            <!-- Pointer -->
+            <div class="pointer"></div>
+    
+            <!-- Wheel -->
+            <div class="wheel" id="wheel">
+                <div class="segment" style="transform: rotate(0deg);"><span>20% OFF</span></div>
+                <div class="segment" style="transform: rotate(60deg);"><span>5% OFF</span></div>
+                <div class="segment" style="transform: rotate(120deg);"><span>10% OFF</span></div>
+                <div class="segment" style="transform: rotate(180deg);"><span>Free Shipping</span></div>
+                <div class="segment" style="transform: rotate(240deg);"><span>Try Again</span></div>
+                <div class="segment" style="transform: rotate(300deg);"><span>15% OFF</span></div>
             </div>
+    
+            <!-- Controls -->
             <button id="spin-button">Spin the Wheel</button>
             <p id="result-message"></p>
             <p id="promo-code" style="font-weight: bold; color: green;"></p>
             <button class="close-wheel">Close</button>
         </div>
     </div>
+    
+    
 
     <script src="home_page_scripts.js"></script>
 </body>

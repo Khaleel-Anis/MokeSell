@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// ✅ Spin-the-Wheel Logic
 document.addEventListener("DOMContentLoaded", () => {
     const spinButton = document.getElementById("spin-button");
     const wheel = document.getElementById("wheel");
@@ -62,12 +61,36 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeWheelButton = document.querySelector(".close-wheel");
     const spinWheelIcon = document.getElementById("spin-wheel-icon");
     const spinWheelContainer = document.getElementById("spin-wheel-container");
-    const userId = localStorage.getItem("user_id"); // ✅ Check login status
+    const userId = localStorage.getItem("user_id");
+
+    const COOLDOWN_KEY = `spinCooldown_${userId}`;
+
+    // ✅ Check Cooldown
+    function isCooldownActive() {
+        const lastSpinDate = localStorage.getItem(COOLDOWN_KEY);
+        if (!lastSpinDate) return false;
+
+        const now = new Date();
+        const lastSpin = new Date(lastSpinDate);
+        const diffInHours = (now - lastSpin) / (1000 * 60 * 60); // Convert milliseconds to hours
+
+        return diffInHours < 24; // Cooldown is active if less than 24 hours
+    }
+
+    // ✅ Start Cooldown
+    function startCooldown() {
+        localStorage.setItem(COOLDOWN_KEY, new Date().toISOString());
+    }
 
     // ✅ Allow Access Only When Logged In
-    spinWheelIcon.addEventListener("click", () => {
+    spinWheelIcon.addEventListener("click", (event) => {
+        event.preventDefault();
         if (userId) {
-            spinWheelContainer.style.display = "flex";
+            if (isCooldownActive()) {
+                alert("⏳ You’ve already spun the wheel today. Try again tomorrow!");
+            } else {
+                spinWheelContainer.style.display = "flex";
+            }
         } else {
             alert("Please log in to access the Spin Wheel.");
         }
@@ -76,10 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // ✅ Close the Spin Wheel
     closeWheelButton.addEventListener("click", () => {
         spinWheelContainer.style.display = "none";
+        resultMessage.textContent = '';
+        promoCodeElement.style.display = "none";
     });
 
     // ✅ Spin Logic
     spinButton.addEventListener("click", () => {
+        if (isCooldownActive()) {
+            alert("⏳ You’ve already spun the wheel today. Try again tomorrow!");
+            return;
+        }
+
         const degrees = Math.floor(3600 + Math.random() * 360);
         wheel.style.transform = `rotate(${degrees}deg)`;
 
@@ -89,15 +119,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const prizes = ["5% OFF", "10% OFF", "Free Shipping", "Try Again", "15% OFF", "20% OFF"];
             const prize = prizes[prizeIndex];
 
-            resultMessage.textContent = `🎉 Congrats! You've won: ${prize}`;
-
-            if (prize !== "Try Again") {
+            if (prize === "Try Again") {
+                resultMessage.textContent = "😢 Try Again Tomorrow!";
+                promoCodeElement.style.display = "none";
+                startCooldown(); // ✅ Start cooldown even for "Try Again"
+            } else {
+                resultMessage.textContent = `🎉 Congrats! You've won: ${prize}`;
                 const promoCode = generatePromoCode();
                 promoCodeElement.textContent = `🎁 Promo Code: ${promoCode}`;
                 promoCodeElement.style.display = "block";
-                savePromoCodeForUser(userId, promoCode); // ✅ Save promo code for the user
-            } else {
-                promoCodeElement.style.display = "none";
+                savePromoCodeForUser(userId, promoCode, prize);
+                startCooldown(); // ✅ Start cooldown for any win
             }
         }, 4000);
     });
@@ -112,10 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return code;
     }
 
-    // ✅ Save Promo Code to User's LocalStorage
-    function savePromoCodeForUser(userId, promoCode) {
+    // ✅ Save Promo Code with Discount Info
+    function savePromoCodeForUser(userId, promoCode, discount) {
         let userPromoCodes = JSON.parse(localStorage.getItem(`promoCodes_${userId}`)) || [];
-        userPromoCodes.push(promoCode);
+        userPromoCodes.push({
+            code: promoCode,
+            discount: discount
+        });
         localStorage.setItem(`promoCodes_${userId}`, JSON.stringify(userPromoCodes));
     }
 });

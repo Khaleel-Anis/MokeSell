@@ -195,3 +195,93 @@ footer {
     color: gray;
     margin-top: 10px;
 }
+/* ✅ Change Password Tab */
+#change-password {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: auto;
+}
+
+#change-password label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+#change-password input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+#change-password input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Change Password Button */
+#change-password-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    width: 100%;
+}
+
+#change-password-btn:hover {
+    background-color: #0056b3;
+}
+
+/* ✅ Delete Account Tab */
+#delete-account {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+#delete-account p {
+    color: #d9534f;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Delete Account Button */
+#delete-account-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    width: 100%;
+}
+
+#delete-account-btn:hover {
+    background-color: #c9302c;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 600px) {
+    #change-password, #delete-account {
+        max-width: 90%;
+        padding: 15px;
+    }
+}

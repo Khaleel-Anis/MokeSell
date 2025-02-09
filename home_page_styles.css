@@ -339,21 +339,35 @@ button:hover svg {
     }
 }
 
-/* ✅ Wheel Background */
-.wheel-background {
-    background: white;
+/* ✅ Wheel Container */
+.wheel-wrapper {
+    background: #fff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     max-width: 350px;
     position: relative;
 }
 
-/* Wheel Adjustments */
+/* ✅ Pointer Positioned Above the "Spin the Wheel" Button */
+.pointer {
+    position: absolute;
+    bottom: 225px;               /* Moves the pointer above the button */
+    left: 50%;
+    transform: translateX(-50%);  /* Flip to point downward */
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid red;  /* Red triangle pointing downward */
+    z-index: 10;
+}
+
+/* ✅ Wheel Design */
 #wheel {
     width: 300px;
     height: 300px;
@@ -363,64 +377,50 @@ button:hover svg {
     overflow: hidden;
     transform: rotate(0deg);
     transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
-    background: white;
-    margin-top: 30px;  /* Push wheel down to avoid overlapping with pointer */
+    background: conic-gradient(
+        #ff9999 0deg 60deg,
+        #ffe6e6 60deg 120deg,
+        #ff9999 120deg 180deg,
+        #ffe6e6 180deg 240deg,
+        #ff9999 240deg 300deg,
+        #ffe6e6 300deg 360deg
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-/* ✅ Segment Styles */
+/* ✅ Segment Style */
 .segment {
     position: absolute;
     width: 50%;
     height: 50%;
-    background: #ffcccb;
-    transform-origin: 100% 100%;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+    top: 50%;
+    left: 50%;
+    transform-origin: 0% 0%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* ✅ Center the Text Inside Segments */
+.segment span {
+    transform: rotate(-30deg) translateX(-15px);  /* Shifts text slightly to the left */
     font-size: 14px;
     font-weight: bold;
     color: black;
     text-align: center;
-    padding: 5px;
-    writing-mode: horizontal-tb;
+    white-space: nowrap;
 }
 
-/* Alternating Segment Colors */
-.segment:nth-child(odd) {
-    background: #ffe6e6;
-}
-
-/* ✅ Correct Segment Rotations */
-.segment:nth-child(1) { transform: rotate(0deg); }
-.segment:nth-child(2) { transform: rotate(60deg); }
-.segment:nth-child(3) { transform: rotate(120deg); }
-.segment:nth-child(4) { transform: rotate(180deg); }
-.segment:nth-child(5) { transform: rotate(240deg); }
-.segment:nth-child(6) { transform: rotate(300deg); }
-
-/* 🔺 Pointer Style */
-/* 🔺 Pointer Style */
-.pointer {
-    position: absolute;
-    top: 15px; /* Move the pointer higher above the wheel */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2em;
-    color: red;
-    z-index: 20;
-}
-
-
-/* Button Styles */
+/* 🚀 Spin Button */
 #spin-button, .close-wheel {
     margin: 10px;
-    padding: 10px 20px;
+    padding: 12px 20px;
     background: red;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s;
@@ -430,7 +430,7 @@ button:hover svg {
     background: darkred;
 }
 
-/* Result & Promo Code Display */
+/* ✅ Result Display */
 #result-message {
     font-size: 16px;
     font-weight: bold;
@@ -445,6 +445,8 @@ button:hover svg {
     margin-top: 5px;
     border-radius: 5px;
     display: none;
+    font-weight: bold;
+    color: green;
 }
 
 

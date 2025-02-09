@@ -33,16 +33,11 @@
             <ul>
                 <li class="tab-link active" data-tab="profile">Profile</li>
                 <li class="tab-link" data-tab="promo-codes">Promo Codes</li> <!-- ✅ Changed from Coupons to Promo Codes -->
-                <li class="tab-link" data-tab="purchase-history">Purchase History</li>
-                <li class="tab-link" data-tab="order-history">Order History</li>
             </ul>
 
             <h2>PROFILE SETTINGS</h2>
             <ul>
-                <li class="tab-link" data-tab="edit-profile">Edit Profile</li>
-                <li class="tab-link" data-tab="address-book">Address Book</li>
                 <li class="tab-link" data-tab="change-password">Change Password</li>
-                <li class="tab-link" data-tab="credit-cards">Credit/Debit Cards</li>
                 <li class="tab-link" data-tab="delete-account">Delete Account</li>
             </ul>
         </aside>
@@ -97,51 +92,32 @@
 
             <!-- ✅ Promo Codes Tab -->
             <div class="tab-content" id="promo-codes"> 
-            <h2>Promo Codes</h2>
-            <ul id="promo-code-list"> 
-                <li>Loading promo codes...</li> <!-- Default message -->
-            </ul>
-            </div>
-
-
-            <div class="tab-content" id="purchase-history">
-                <h2>Purchase History</h2>
-                <p>Your purchase history will appear here.</p>
-            </div>
-
-            <div class="tab-content" id="order-history">
-                <h2>Order History</h2>
-                <p>Your order history will be displayed here.</p>
-            </div>
-
-            <div class="tab-content" id="edit-profile">
-                <h2>Edit Profile</h2>
-                <p>Profile editing form goes here.</p>
-            </div>
-
-            <div class="tab-content" id="address-book">
-                <h2>Address Book</h2>
-                <p>Manage your addresses here.</p>
+                <h2>Promo Codes</h2>
+                <ul id="promo-code-list"> 
+                    <li>Loading promo codes...</li> <!-- Default message -->
+                </ul>
             </div>
 
             <div class="tab-content" id="change-password">
                 <h2>Change Password</h2>
-                <p>Password change form here.</p>
-            </div>
-
-            <div class="tab-content" id="credit-cards">
-                <h2>Credit/Debit Cards</h2>
-                <p>Manage your cards here.</p>
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password" placeholder="Enter new password" required><br><br>
+            
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" placeholder="Confirm new password" required><br><br>
+            
+                <button id="change-password-btn">Change Password</button>
             </div>
 
             <div class="tab-content" id="delete-account">
-                <h2>Delete Account</h2>
-                <p>Account deletion option here.</p>
-            </div>
+    <h2>Delete Account</h2>
+    <p>⚠️ This action is irreversible. All your data will be permanently deleted.</p>
+    <button id="delete-account-btn" style="background-color: red; color: white;">Delete Account</button>
+</div>
         </main>
     </div>
 
-    <!-- ✅ Your Existing Footer (Unchanged) -->
+    <!-- ✅ Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -160,7 +136,7 @@
                 <ul>
                     <li><a href="#">Membership</a></li>
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Promo Codes</a></li> <!-- ✅ Updated from Coupons to Promo Codes -->
+                    <li><a href="#">Promo Codes</a></li> 
                 </ul>
             </div>
 
