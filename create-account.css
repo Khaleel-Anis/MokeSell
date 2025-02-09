@@ -26,18 +26,19 @@ header {
 
 /* Logo */
 .logo {
-    height: 50px;
+    height: 30px;  /* Smaller size */
     cursor: pointer;
 }
 
 /* Back Button */
 .back-button {
-    position: absolute;
-    top: 15px;
+    position: fixed;  /* Fixed position for visibility */
+    top: 80px;
     left: 20px;
     display: flex;
     align-items: center;
     cursor: pointer;
+    z-index: 1001; /* Make sure it appears above other elements */
 }
 
 .back-button img {
@@ -46,7 +47,7 @@ header {
 }
 
 .back-button:hover img {
-    transform: translateX(-5px); /* Adds a slight hover animation */
+    transform: translateX(-5px); /* Hover animation */
 }
 
 /* Horizontal Line */
@@ -59,13 +60,17 @@ header {
     top: 60px;
 }
 
-/* Create Account Header (Outside the Form) */
-.create-account-header {
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: 90px; /* Adjusted for the fixed header */
-    margin-bottom: 10px;
-    text-align: center;
+/* Create Account Container */
+.form-box {
+    background-color: white;
+    padding: 30px;
+    border: 1px solid #ccc;
+    max-width: 500px;  /* ✅ Increased width */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 100px;  /* Adjusted for header */
 }
 
 /* Description */
@@ -75,33 +80,7 @@ header {
     color: #333;
     max-width: 400px;
     font-size: 14px;
-}
-
-/* Form Container */
-.form-box {
-    background-color: white;
-    padding: 30px;
-    border: 1px solid #ccc;
-    max-width: 400px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 20px;
-}
-
-/* Ensure the form fills the container */
-.form-box form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Add spacing between sections */
-hr {
-    margin: 20px 0;
-    border: none;
-    border-top: 1px solid #ccc;
+    margin: 0 auto;
 }
 
 /* Form Labels */
@@ -121,18 +100,6 @@ input, select {
     box-sizing: border-box;
 }
 
-/* Checkbox */
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-}
-
-.checkbox-container input {
-    width: auto;
-    margin-right: 10px;
-}
-
 /* Gender Selection */
 .gender-container {
     display: flex;
@@ -145,42 +112,33 @@ input, select {
     display: flex;
     align-items: center;
     gap: 5px;
-    white-space: nowrap;
 }
 
 .gender-option input[type="radio"] {
     accent-color: #007bff;
     transform: scale(1.1);
-    margin-right: 5px;
 }
 
-/* Membership Agreement */
-.membership-agreement {
-    font-size: 12px;
-    color: gray;
-    margin-top: 20px;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-}
-
-.membership-agreement .checkbox-container {
-    margin-top: 10px;
-}
-
-/* Links */
-.terms-links {
+/* Checkbox */
+.checkbox-container {
     display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    margin-top: 10px;
+    align-items: center;
+    margin: 10px 0;
 }
 
-.terms-links a {
+.checkbox-container input {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Terms and Conditions Links */
+.checkbox-container a {
     color: #007bff;
     text-decoration: none;
+    font-weight: bold;
 }
 
-.terms-links a:hover {
+.checkbox-container a:hover {
     text-decoration: underline;
 }
 
@@ -200,33 +158,4 @@ button {
 
 button:hover {
     background-color: #333;
-}
-
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #ddd;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.footer a {
-    color: black;
-    text-decoration: none;
-    font-size: 12px;
-    margin: 0 10px;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
-
-/* Copyright */
-.copyright {
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    color: gray;
 }

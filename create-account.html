@@ -8,31 +8,31 @@
 </head>
 <body>
 
-    <!-- Header Section (Same as Login Page) -->
+    <!-- Header Section -->
     <header>
         <nav class="top-nav">
-            <div class="nav-left">
+            <section class="nav-left">
                 <a href="index.html">
                     <img src="images/logo-no-background.png" alt="MokeSell Logo" class="logo">
                 </a>
-            </div>
+            </section>
         </nav>
     </header>
 
-    <!-- Back Button (Arrow Only) -->
-    <a href="index.html" class="back-button">
+    <!-- Back Button (Clearly Visible) -->
+    <a href="login-page.html" class="back-button">
         <img src="images/back-arrow.png" alt="Back">
     </a>
 
     <!-- Horizontal Line -->
-    <div class="header-line"></div>
+    <section class="header-line"></section>
 
     <!-- Create Account Container -->
-    <div class="form-box">
+    <section class="form-box">
         <h1>CREATE AN ACCOUNT</h1>
         <p class="description">
-            You will receive the confirmation mail to your email address associated with your account. 
-            Please make sure to check your incoming email from us.
+            You will receive the confirmation email to your email address associated with your account. 
+            Please make sure to check your inbox for confirmation from us.
         </p>
 
         <!-- Form -->
@@ -54,43 +54,33 @@
 
             <!-- Gender Selection -->
             <label for="contact-gender">GENDER</label>
-            <div class="gender-container" id="contact-gender">
+            <section class="gender-container" id="contact-gender">
                 <label class="gender-option">
-                    <input type="radio" name="gender" value="male" required>
-                    Male
+                    <input type="radio" name="gender" value="male" required> Male
                 </label>
-
                 <label class="gender-option">
-                    <input type="radio" name="gender" value="female">
-                    Female
+                    <input type="radio" name="gender" value="female"> Female
                 </label>
-
                 <label class="gender-option">
-                    <input type="radio" name="gender" value="prefer-not">
-                    Prefer Not To State
+                    <input type="radio" name="gender" value="prefer-not"> Prefer Not To State
                 </label>
-            </div>
+            </section>
 
             <hr>
 
             <!-- Membership Agreement -->
             <h3>MEMBERSHIP AGREEMENT</h3>
-            <p>By creating an account, you agree to MokeSell's privacy policy and terms of use.</p>
+            <p>By creating an account, you agree to MokeSell's Privacy Policy and Terms of Use.</p>
 
-            <div class="checkbox-container">
+            <section class="checkbox-container">
                 <input type="checkbox" id="terms" required>
-                <label for="terms">I agree to the MokeSell's TERMS OF USE and PRIVACY POLICY</label>
-            </div>
-
-            <div class="terms-links">
-                <a href="#">TERMS OF USE</a>
-                <a href="#">PRIVACY POLICY</a>
-            </div>
+                <label for="terms">I agree to MokeSell's <a href="TOS.html">TERMS OF USE</a> and <a href="PP.html">PRIVACY POLICY</a></label>
+            </section>
 
             <!-- Register Button -->
             <button type="submit" id="contact-submit" class="register-btn">REGISTER</button> 
         </form>
-    </div>
+    </section>
 
     <script src="create_account_script.js"></script>
 </body>

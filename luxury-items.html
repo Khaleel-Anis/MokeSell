@@ -47,21 +47,21 @@
                 <p>Shop the latest luxury items now.</p>
                 <a href="luxury-items-products.html">
                     <button>
-                        <div class="default-btn">
+                        <section class="default-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" stroke="#ffffff" viewBox="0 0 24 24" height="20" width="20">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
                             <span>Curious?</span>
-                        </div>
-                        <div class="hover-btn">
+                        </section>
+                        <section class="hover-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="#ffcccb" height="20" width="20" viewBox="0 0 24 24">
                                 <circle r="1" cy="21" cx="9"></circle>
                                 <circle r="1" cy="21" cx="20"></circle>
                                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                             </svg>
                             <span>Shop Now</span>
-                        </div>
+                        </section>
                     </button>
                 </a>
             </section>
@@ -93,25 +93,25 @@
     </section>
 
     <!-- ✅ Spin-the-Wheel (Added) -->
-    <div id="spin-wheel-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
-        <div class="wheel-wrapper">
-            <div class="pointer"></div> <!-- Pointer -->
+    <section id="spin-wheel-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;">
+        <section class="wheel-wrapper">
+            <section class="pointer"></section> <!-- Pointer -->
 
-            <div class="wheel" id="wheel">
-                <div class="segment" style="transform: rotate(0deg);"><span>20% OFF</span></div>
-                <div class="segment" style="transform: rotate(60deg);"><span>5% OFF</span></div>
-                <div class="segment" style="transform: rotate(120deg);"><span>10% OFF</span></div>
-                <div class="segment" style="transform: rotate(180deg);"><span>Free Shipping</span></div>
-                <div class="segment" style="transform: rotate(240deg);"><span>Try Again</span></div>
-                <div class="segment" style="transform: rotate(300deg);"><span>15% OFF</span></div>
-            </div>
+            <section class="wheel" id="wheel">
+                <section class="segment" style="transform: rotate(0deg);"><span>20% OFF</span></section>
+                <section class="segment" style="transform: rotate(60deg);"><span>5% OFF</span></section>
+                <section class="segment" style="transform: rotate(120deg);"><span>10% OFF</span></section>
+                <section class="segment" style="transform: rotate(180deg);"><span>Free Shipping</span></section>
+                <section class="segment" style="transform: rotate(240deg);"><span>Try Again</span></section>
+                <section class="segment" style="transform: rotate(300deg);"><span>15% OFF</span></section>
+            </section>
 
             <button id="spin-button">Spin the Wheel</button>
             <p id="result-message"></p>
             <p id="promo-code" style="font-weight: bold; color: green;"></p>
             <button class="close-wheel">Close</button>
-        </div>
-    </div>
+        </section>
+    </section>
 
     <script src="home_page_scripts.js"></script>
 </body>
