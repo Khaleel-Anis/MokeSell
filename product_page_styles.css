@@ -159,44 +159,92 @@ button.offer {
     background-color: #ccc;
 }
 
-.similar-listings .seller-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 5px;
-}
-
-.similar-listings .seller-pic {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #ccc;
-}
-
-.similar-listings .listing-image {
-    width: 100%;
-    height: 150px;
-    background-color: #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.similar-listings .listing-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-}
-
 .similar-listings {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
-    width: 80%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-top: 2px solid #ccc;
-    padding-top: 10px;
+}
+
+.listing {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.listing:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.listing-image {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.listing-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.listing:hover .listing-image img {
+    transform: scale(1.1);
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.product-price {
+    color: #d32f2f;
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.product-condition {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+.view-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.view-button:hover {
+    background-color: #0056b3;
 }
 
 #back-to-top {

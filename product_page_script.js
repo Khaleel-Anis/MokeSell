@@ -88,6 +88,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('main').innerHTML = "<p>Error loading product details.</p>";
     }
 
+    let currentSlide = 0;
+    document.querySelector('.prev').addEventListener('click', () => {
+    if (currentSlide > 0) {
+        currentSlide--;
+        updateSlider();
+    }
+});
+    document.querySelector('.next').addEventListener('click', () => {
+    if (currentSlide < images.length - 1) {
+        currentSlide++;
+        updateSlider();
+    }
+});
+
+    function updateSlider() {
+    const slider = document.getElementById('image-slider');
+    const slideWidth = document.querySelector('.main-image').offsetWidth;
+    slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+}
+
     document.getElementById("makeOfferButton").addEventListener("click", () => {
         const buyerId = localStorage.getItem("userID");
         const sellerId = product.sellerId;
@@ -116,6 +136,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         alert(`${product.name} has been added to your cart!`);
         window.location.href = "cart-page.html";
+
+        const existingItem = cart.find(item => item.id === product._id);
+        if (!existingItem) {
+            cart.push(productToAdd);
+        } else {
+            alert('Item already in cart!');
+        }
     });
 
     async function loadSimilarListings(category, currentProductId) {
@@ -129,8 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             const products = await response.json();
-            const similarListingsContainer = document.querySelector(".similar-listings");
-            similarListingsContainer.innerHTML = "";
+            const similarListingsContainer = document.querySelector("#similar-listings-container");
 
             products.filter(item => item._id !== currentProductId).forEach(item => {
                 const listing = document.createElement("article");
