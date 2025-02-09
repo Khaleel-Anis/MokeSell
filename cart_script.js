@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const taxElement = document.getElementById("tax");
     const totalElement = document.getElementById("total");
 
+    const API_KEY = "67a87718f247e57112117e1a"; // Replace with your actual API key
+    const API_URL = "https://mokesell-cd4f.restdb.io/rest/products";
+
     let subtotal = 0;
     const shippingFee = 50; // Flat shipping fee
     const taxRate = 0.07;   // 7% tax
@@ -17,12 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cart.forEach((item, index) => {
         subtotal += item.price;
-
+    
         const itemElement = document.createElement("figure");
         itemElement.classList.add("basket-item");
-
+    
+        // Check if item.image is an array, otherwise treat it as a single image
+        const images = Array.isArray(item.image) ? item.image : [item.image];
+        const mainImage = images[0] || "images/placeholder-product.png";  // Default placeholder if no image
+    
         itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${mainImage}" alt="${item.name}">
             <figcaption>
                 <p><strong>${item.name}</strong></p>
                 <p>Price: S$${item.price.toFixed(2)}</p>
@@ -30,9 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button onclick="removeFromCart(${index})">Remove</button>
             </figcaption>
         `;
-
+    
         basketContainer.appendChild(itemElement);
     });
+    
 
     const tax = subtotal * taxRate;
     const total = subtotal + shippingFee + tax;
@@ -74,6 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const itemElement = document.createElement("figure");
         itemElement.classList.add("basket-item");
 
+        const images = item.image.split(","); // Split multiple images
+        const mainImage = images[0]; // Display the first image
+
         itemElement.innerHTML = `
             <img src="${item.image}" alt="${item.name}">
             <figcaption>
@@ -96,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     totalElement.textContent = `S$${total.toFixed(2)}`;
 });
 
-// ✅ Remove Item from Cart
+//  Remove Item from Cart
 function removeFromCart(index) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.splice(index, 1);
@@ -104,7 +115,7 @@ function removeFromCart(index) {
     location.reload();
 }
 
-// ✅ Apply Promo or Voucher Code
+//  Apply Promo or Voucher Code
 document.querySelector(".apply-button").addEventListener("click", (e) => {
     e.preventDefault();
     const promoCode = document.querySelector(".promo-code").value.trim().toUpperCase();
@@ -112,7 +123,7 @@ document.querySelector(".apply-button").addEventListener("click", (e) => {
     const shippingFee = parseFloat(document.getElementById("shipping").textContent.replace("S$", ""));
     const tax = parseFloat(document.getElementById("tax").textContent.replace("S$", ""));
 
-    const storedVoucher = localStorage.getItem("voucherCode"); // ✅ Get stored voucher code
+    const storedVoucher = localStorage.getItem("voucherCode"); //  Get stored voucher code
 
     let discount = 0;
 
@@ -138,17 +149,42 @@ document.querySelector(".apply-button").addEventListener("click", (e) => {
     document.getElementById("total").textContent = `S$${total.toFixed(2)}`;
 });
 
-// ✅ Checkout Logic
-document.getElementById("checkoutBtn").addEventListener("click", () => {
+//  Checkout Logic
+document.getElementById("checkoutBtn").addEventListener("click", async () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const API_KEY = "67a87718f247e57112117e1a"; // Replace with your actual API key
+    const API_URL = "https://mokesell-cd4f.restdb.io/rest/products";
+
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    showLoader();
+
+    for (const item of cart) {
+        try {
+            const response = await fetch(`${API_URL}/${item.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-apikey": API_KEY,
+                }
+            });
+
+            if (response.ok) {
+                console.log(`Product ${item.name} removed from RestDB.`);
+            } else {
+                console.error(`Failed to remove product ${item.name}. Status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error(`Error removing product ${item.name}:`, error);
+        }
+    }
+
+    hideLoader();
+
     alert("Thank you for your purchase!");
-    localStorage.removeItem("cart");        // Clear the cart
-    localStorage.removeItem("voucherCode"); // Clear voucher after use
-    window.location.href = "confirmation.html";
+    localStorage.removeItem("cart"); // Clear the cart after checkout
+    window.location.href = "confirmation.html"; // Redirect to confirmation page
 });
-const voucherCode = localStorage.getItem("voucher_code");
-
-if (voucherCode) {
-    alert(`You have an active voucher: ${voucherCode}`);
-    // Apply discount logic here if needed
-}
-
