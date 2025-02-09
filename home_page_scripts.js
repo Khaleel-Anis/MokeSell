@@ -42,22 +42,24 @@ function showTransitionAndRedirect(url) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const profileIcon = document.getElementById("profile-icon");
-    const userId = localStorage.getItem("user_id");
+    const userId = localStorage.getItem("user_id");  // Make sure this matches the key used during login
 
     if (profileIcon) {
         profileIcon.addEventListener("click", function (event) {
             event.preventDefault();
 
-            if (userId) {
-                //  Redirect to profile page if logged in
+            if (userId && userId !== "null") {
+                // ✅ Redirect to Profile Page if Logged In
                 window.location.href = "profile-page.html";
             } else {
-                //  Redirect to login page if not logged in
+                // ✅ Redirect to Homepage if Not Logged In
                 window.location.href = "login-page.html";
             }
         });
     }
 });
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const spinButton = document.getElementById("spin-button");
     const wheel = document.getElementById("wheel");
@@ -81,15 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
     spinButton.addEventListener("click", () => {
         const degrees = Math.floor(3600 + Math.random() * 360);
         wheel.style.transform = `rotate(${degrees}deg)`;
-
+    
         setTimeout(() => {
-            const normalizedDegrees = degrees % 360;
+            const normalizedDegrees = (360 - (degrees % 360)) % 360; // Correct rotation direction
             const prizeIndex = Math.floor((normalizedDegrees / 360) * 6);
             const prizes = ["5% OFF", "10% OFF", "Free Shipping", "Try Again", "15% OFF", "20% OFF"];
-            const prize = prizes[(6 - prizeIndex) % 6];
-
+            const prize = prizes[prizeIndex];
+    
             resultMessage.textContent = `🎉 Congrats! You've won: ${prize}`;
-
+    
             if (prize !== "Try Again") {
                 const promoCode = generatePromoCode();
                 promoCodeElement.textContent = `🎁 Promo Code: ${promoCode}`;
@@ -100,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 4000);
     });
+    
 
     // ✅ Promo Code Generator
     function generatePromoCode() {

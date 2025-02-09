@@ -2,52 +2,52 @@ document.addEventListener("DOMContentLoaded", function () {
   const APIKEY = "67a87718f247e57112117e1a";
 
   document.getElementById("contact-submit").addEventListener("click", function (e) {
-    e.preventDefault();
+      e.preventDefault();
 
-    let contactName = document.getElementById("contact-name").value;
-    let contactEmail = document.getElementById("contact-email").value;
-    let contactPassword = document.getElementById("contact-password").value;
-    let contactBirthday = document.getElementById("contact-birthday").value;
-    let contactPostal = document.getElementById("contact-postal").value;
+      const contactName = document.getElementById("contact-name").value;
+      const contactEmail = document.getElementById("contact-email").value;
+      const contactPassword = document.getElementById("contact-password").value;
+      const contactBirthday = document.getElementById("contact-birthday").value;
+      const contactPostal = document.getElementById("contact-postal").value;
 
-    let contactGender = document.querySelector('input[name="gender"]:checked');
-    let genderValue = contactGender ? contactGender.value : "";
+      const contactGender = document.querySelector('input[name="gender"]:checked');
+      const genderValue = contactGender ? contactGender.value : "";
 
-    let jsondata = {
-      "name": contactName,
-      "email": contactEmail,
-      "password": contactPassword,
-      "birthday": contactBirthday,
-      "postal_code": contactPostal,
-      "gender": genderValue
-    };
+      const jsondata = {
+          "name": contactName,
+          "email": contactEmail,
+          "password": contactPassword,
+          "birthday": contactBirthday,
+          "postal_code": contactPostal,
+          "gender": genderValue
+      };
 
-    let settings = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-apikey": APIKEY,
-        "Cache-Control": "no-cache"
-      },
-      body: JSON.stringify(jsondata),
-    };
+      const settings = {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              "x-apikey": APIKEY,
+              "Cache-Control": "no-cache"
+          },
+          body: JSON.stringify(jsondata),
+      };
 
-    fetch("https://mokesell-cd4f.restdb.io/rest/user-account", settings)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        document.getElementById("contact-submit").disabled = false;
+      fetch("https://mokesell-cd4f.restdb.io/rest/user-account", settings)
+          .then(response => response.json())
+          .then(data => {
+              console.log("Registration Successful:", data);
+              document.getElementById("contact-submit").disabled = false;
 
-        // ✅ Store session data
-        localStorage.setItem("user_id", data._id);
-        localStorage.setItem("user_email", data.email);
+              // ✅ Store User Info
+              localStorage.setItem("userID", data._id);
+              localStorage.setItem("userEmail", data.email);
 
-        // ✅ Redirect to homepage
-        window.location.href = "index.html";
-      })
-      .catch(error => {
-        console.error("Registration failed:", error);
-        alert("Registration failed. Please try again.");
-      });
+              // ✅ Redirect to Homepage (index.html) after Account Creation
+              window.location.href = "index.html";
+          })
+          .catch(error => {
+              console.error("Registration failed:", error);
+              alert("Registration failed. Please try again.");
+          });
   });
 });

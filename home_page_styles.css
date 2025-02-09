@@ -353,7 +353,7 @@ button:hover svg {
     position: relative;
 }
 
-/* 🎯 Wheel Design */
+/* Wheel Adjustments */
 #wheel {
     width: 300px;
     height: 300px;
@@ -364,7 +364,9 @@ button:hover svg {
     transform: rotate(0deg);
     transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
     background: white;
+    margin-top: 30px;  /* Push wheel down to avoid overlapping with pointer */
 }
+
 
 /* ✅ Segment Styles */
 .segment {
@@ -399,15 +401,17 @@ button:hover svg {
 .segment:nth-child(6) { transform: rotate(300deg); }
 
 /* 🔺 Pointer Style */
+/* 🔺 Pointer Style */
 .pointer {
     position: absolute;
-    top: -25px;
+    top: 15px; /* Move the pointer higher above the wheel */
     left: 50%;
     transform: translateX(-50%);
     font-size: 2em;
     color: red;
     z-index: 20;
 }
+
 
 /* Button Styles */
 #spin-button, .close-wheel {

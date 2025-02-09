@@ -4,11 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("form").addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Get user input
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        // API Request to Verify User Credentials
         fetch(`https://mokesell-cd4f.restdb.io/rest/user-account?q={"email":"${email}","password":"${password}"}`, {
             method: "GET",
             mode: "cors",
@@ -23,12 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (users.length > 0) {
                 const user = users[0];
 
-                //  Store session info consistently
-                localStorage.setItem("userID", user._id);
+                // ✅ Store User Info with the correct key
+                localStorage.setItem("user_id", user._id);  // Changed from "userID" to "user_id"
                 localStorage.setItem("userEmail", user.email);
                 localStorage.setItem("userName", user.name);
 
-                // Redirect to homepage after login
+                // ✅ Redirect to Homepage (index.html) after Login
                 window.location.href = "index.html";
             } else {
                 alert("Invalid email or password. Please try again.");
