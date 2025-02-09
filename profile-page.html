@@ -19,73 +19,121 @@
         </nav>
     </header>
 
-    <div class="header-line"></div>
+    <!-- Back Button -->
+    <div class="back-arrow">
+        <a href="index.html">
+            <img src="images/back-arrow.png" alt="Back Arrow" class="back-icon">
+        </a>
+    </div>
 
     <div class="profile-container">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <h2>MEMBERSHIP</h2>
             <ul>
-                <li class="section-title">MEMBERSHIP</li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Coupons</a></li>
-                <li><a href="#">Purchase History</a></li>
-                <li><a href="#">Order History</a></li>
+                <li class="tab-link active" data-tab="profile">Profile</li>
+                <li class="tab-link" data-tab="coupons">Coupons</li>
+                <li class="tab-link" data-tab="purchase-history">Purchase History</li>
+                <li class="tab-link" data-tab="order-history">Order History</li>
             </ul>
-            
+
+            <h2>PROFILE SETTINGS</h2>
             <ul>
-                <li class="section-title">PROFILE SETTINGS</li>
-                <li><a href="#">Edit Profile</a></li>
-                <li><a href="#">Address Book</a></li>
-                <li><a href="#">Change My Password</a></li>
-                <li><a href="#">My Credit/Debit Cards</a></li>
-                <li><a href="#">Delete Account</a></li>
+                <li class="tab-link" data-tab="edit-profile">Edit Profile</li>
+                <li class="tab-link" data-tab="address-book">Address Book</li>
+                <li class="tab-link" data-tab="change-password">Change Password</li>
+                <li class="tab-link" data-tab="credit-cards">Credit/Debit Cards</li>
+                <li class="tab-link" data-tab="delete-account">Delete Account</li>
             </ul>
         </aside>
 
         <!-- Profile Details -->
         <main class="profile-details">
-            <h2>PROFILE</h2>
-            <div class="profile-box" id="profile-box">
-                <div class="profile-row">
-                    <div class="profile-section">
-                        <h3>EMAIL ADDRESS</h3>
-                        <p id="email">Loading...</p>
+            <!-- Profile Tab -->
+            <div class="tab-content active" id="profile">
+                <h2>PROFILE</h2>
+                <div class="profile-box">
+                    <div class="profile-row">
+                        <div class="profile-section">
+                            <h3>EMAIL ADDRESS</h3>
+                            <p id="email">Loading...</p>
+                        </div>
+                        <div class="profile-section">
+                            <h3>CONTACT NUMBER</h3>
+                            <p id="contact-number">Loading...</p>
+                        </div>
                     </div>
-                    <div class="profile-section">
-                        <h3>CONTACT NUMBER</h3>
-                        <p id="contact-number">Loading...</p>
-                    </div>
-                </div>
 
-                <div class="profile-row">
-                    <div class="profile-section">
-                        <h3>NAME</h3>
-                        <p id="name">Loading...</p>
+                    <div class="profile-row">
+                        <div class="profile-section">
+                            <h3>NAME</h3>
+                            <p id="name">Loading...</p>
+                        </div>
+                        <div class="profile-section">
+                            <h3>BIRTHDAY</h3>
+                            <p id="birthday">Loading...</p>
+                        </div>
                     </div>
-                    <div class="profile-section">
-                        <h3>BIRTHDAY</h3>
-                        <p id="birthday">Loading...</p>
-                    </div>
-                </div>
 
-                <div class="profile-row">
-                    <div class="profile-section">
-                        <h3>ADDRESS</h3>
-                        <p id="address">Loading...</p>
+                    <div class="profile-row">
+                        <div class="profile-section">
+                            <h3>ADDRESS</h3>
+                            <p id="address">Loading...</p>
+                        </div>
+                        <div class="profile-section">
+                            <h3>GENDER</h3>
+                            <p id="gender">Loading...</p>
+                        </div>
                     </div>
+
                     <div class="profile-section">
-                        <h3>GENDER</h3>
-                        <p id="gender">Loading...</p>
+                        <h3>POSTAL CODE</h3>
+                        <p id="postal-code">Loading...</p>
                     </div>
-                </div>
 
-                <div class="profile-section">
-                    <h3>POSTAL CODE</h3>
-                    <p id="postal-code">Loading...</p>
+                    <button id="logout-btn">Logout</button>
                 </div>
+            </div>
 
-                <button id="logout-btn">Logout</button>
+            <!-- Placeholder Tabs -->
+            <div class="tab-content" id="coupons">
+                <h2>Coupons</h2>
+                <p>No coupons available right now.</p>
+            </div>
+
+            <div class="tab-content" id="purchase-history">
+                <h2>Purchase History</h2>
+                <p>Your purchase history will appear here.</p>
+            </div>
+
+            <div class="tab-content" id="order-history">
+                <h2>Order History</h2>
+                <p>Your order history will be displayed here.</p>
+            </div>
+
+            <div class="tab-content" id="edit-profile">
+                <h2>Edit Profile</h2>
+                <p>Profile editing form goes here.</p>
+            </div>
+
+            <div class="tab-content" id="address-book">
+                <h2>Address Book</h2>
+                <p>Manage your addresses here.</p>
+            </div>
+
+            <div class="tab-content" id="change-password">
+                <h2>Change Password</h2>
+                <p>Password change form here.</p>
+            </div>
+
+            <div class="tab-content" id="credit-cards">
+                <h2>Credit/Debit Cards</h2>
+                <p>Manage your cards here.</p>
+            </div>
+
+            <div class="tab-content" id="delete-account">
+                <h2>Delete Account</h2>
+                <p>Account deletion option here.</p>
             </div>
         </main>
     </div>
@@ -123,51 +171,11 @@
                 </div>
             </div>
         </div>
-
         <div class="copyright">
             Copyright © MokeSell, Ltd. All rights reserved.
         </div>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const APIKEY = "6796ddca9cbb2707d665c482";
-            const userId = localStorage.getItem("user_id");
-
-            if (!userId) {
-                window.location.href = "login.html"; // Redirect to login if not logged in
-                return;
-            }
-
-            const API_URL = `https://fedassignment-6369.restdb.io/rest/user-account/${userId}`;
-
-            // Fetch user data from RestDB
-            fetch(API_URL, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-apikey": APIKEY,
-                    "Cache-Control": "no-cache"
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("email").textContent = data.email || "Not Provided";
-                document.getElementById("contact-number").textContent = data.contact_number || "Not Provided";
-                document.getElementById("name").textContent = data.name || "Not Provided";
-                document.getElementById("birthday").textContent = data.birthday || "Not Provided";
-                document.getElementById("address").textContent = data.address || "Not Provided";
-                document.getElementById("gender").textContent = data.gender || "Not Provided";
-                document.getElementById("postal-code").textContent = data.postal_code || "Not Provided";
-            })
-            .catch(error => console.error("Error fetching profile:", error));
-
-            // Logout functionality
-            document.getElementById("logout-btn").addEventListener("click", function () {
-                localStorage.removeItem("user_id");
-                window.location.href = "index.html"; // Redirect to homepage after logout
-            });
-        });
-    </script>
+    <script src="profile-page.js"></script>
 </body>
 </html>

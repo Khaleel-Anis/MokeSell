@@ -4,37 +4,47 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body stretches to fill the viewport */
 }
 
 /* Header */
 header {
     background-color: white;
-    padding: 20px;
-    text-align: center;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid #ccc;
 }
 
 .logo {
-    height: 50px;
+    height: 35px; /* Smaller logo */
+    width: auto;
 }
 
-/* Horizontal Line */
-.header-line {
-    width: 100%;
-    height: 2px;
-    background-color: #ccc;
-    margin-bottom: 20px;
+/* Back Arrow */
+.back-arrow {
+    margin: 10px 20px;
 }
 
-/* Profile Page Layout */
+.back-icon {
+    height: 25px;
+    cursor: pointer;
+}
+
+/* Profile Container */
 .profile-container {
     display: flex;
     justify-content: center;
     gap: 40px;
     padding: 40px;
+    max-width: 1400px; /* Increased max-width for a wider layout */
+    margin: auto;
+    flex: 1; /* Pushes footer to the bottom */
 }
 
-/* Sidebar Navigation */
+/* Sidebar */
 .sidebar {
     width: 250px;
     background: white;
@@ -44,58 +54,51 @@ header {
 }
 
 .sidebar h2 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.sidebar .section-title {
-    font-weight: bold;
-    margin-top: 20px;
-}
-
 .sidebar ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
 .sidebar ul li {
-    margin: 10px 0;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
-.sidebar ul li a {
-    text-decoration: none;
-    color: black;
-}
-
-.sidebar ul li a:hover {
-    text-decoration: underline;
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background-color: #e0e0e0;
+    font-weight: bold;
 }
 
 /* Profile Details */
 .profile-details {
-    flex: 1;
-}
-
-.profile-details h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 15px;
+    flex: 2; /* Expanded to take up more space */
+    background-color: white;
+    padding: 30px; /* Increased padding */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    min-width: 600px; /* Ensures it's not too narrow */
 }
 
 /* Profile Box */
 .profile-box {
-    background-color: white;
+    border: 1px solid #ccc;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
 }
 
 .profile-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    gap: 20px; /* Adds space between columns */
 }
 
 .profile-section {
@@ -113,26 +116,46 @@ header {
     color: #333;
 }
 
+/* Tabs */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Logout Button */
+#logout-btn {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#logout-btn:hover {
+    background-color: darkred;
+}
+
 /* Footer */
 footer {
-    background: #ddd;
-    padding: 20px;
-    margin-top: 40px;
+    background-color: #ddd;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* Pushes the footer to the bottom */
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .footer-section {
     width: 30%;
-}
-
-.footer-section h4 {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    min-width: 200px;
 }
 
 .footer-section ul {
@@ -147,17 +170,16 @@ footer {
 .footer-section ul li a {
     text-decoration: none;
     color: black;
-    font-size: 12px;
 }
 
 .footer-section ul li a:hover {
     text-decoration: underline;
 }
 
-/* Social Icons */
 .social-icons {
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 .social-icon {
@@ -165,12 +187,11 @@ footer {
     height: 20px;
     background: black;
     display: inline-block;
+    border-radius: 50%;
 }
 
-/* Copyright */
 .copyright {
-    text-align: center;
-    padding: 10px;
     font-size: 12px;
     color: gray;
+    margin-top: 10px;
 }
