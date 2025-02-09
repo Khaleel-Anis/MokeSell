@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const API_URL = `https://mokesell-cd4f.restdb.io/rest/user-account/${userId}`;
 
-    // ✅ Fetch User Data
+    //  Fetch User Data
     fetch(API_URL, {
         method: "GET",
         headers: {
@@ -28,17 +28,20 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("gender").textContent = data.gender || "Not Provided";
         document.getElementById("postal-code").textContent = data.postal_code || "Not Provided";
 
-        displayPromoCodes(); // ✅ Display promo codes after fetching user data
+        displayPromoCodes(); //  Display promo codes after fetching user data
     })
     .catch(error => console.error("Error fetching profile:", error));
 
-    // ✅ Logout Functionality
+    //  Logout Functionality
     document.getElementById("logout-btn").addEventListener("click", function () {
         localStorage.removeItem("user_id");
+        sessionStorage.clear();  // Clear sessionStorage if any user data is stored there
+        localStorage.clear();    // Clear all user-related data in localStorage
+        
         window.location.href = "index.html";
     });
 
-    // ✅ Display Promo Codes
+    //  Display Promo Codes
     function displayPromoCodes() {
         const userId = localStorage.getItem("user_id");
         const promoCodeList = document.getElementById("promo-code-list");
