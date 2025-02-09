@@ -145,6 +145,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    document.getElementById("addToWishlistButton").addEventListener("click", () => {
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        const productToAdd = {
+            id: product._id,
+            name: product.name,
+            price: product.price,
+            image: product["product image"] || 'images/placeholder-product.png'
+        };
+
+        // Check if the product already exists in the wishlist
+        const exists = wishlist.some(item => item.id === productToAdd.id);
+
+        if (!exists) {
+            wishlist.push(productToAdd);
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+            alert(`${product.name} has been added to your wishlist! ❤️`);
+        } else {
+            alert(`${product.name} is already in your wishlist.`);
+        }
+    });
+
     async function loadSimilarListings(category, currentProductId) {
         try {
             const response = await fetch(`${API_URL}?q={"category":"${category}"}`, {

@@ -44,6 +44,29 @@ header {
     align-items: center;
 }
 
+/* Wishlist Button Styling */
+#wishlistButton, .wishlist {
+    background-color: #ff6b81;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+#wishlistButton:hover, .wishlist:hover {
+    background-color: #ff4757;
+    transform: scale(1.05);
+}
+
+#wishlistButton:active, .wishlist:active {
+    transform: scale(0.95);
+}
+
 /* Main Layout */
 main {
     padding: 20px;
