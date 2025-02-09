@@ -13,8 +13,8 @@ document.getElementById("searchInput").addEventListener("input", (e) => {
 });
 
 async function searchProducts(query) {
-    const API_URL = "https://fedassignment-6369.restdb.io/rest/products";
-    const API_KEY = "6796ddca9cbb2707d665c482";
+    const API_URL = "https://mokesell-cd4f.restdb.io/rest/products";
+    const API_KEY = "67a87718f247e57112117e1a";
 
     try {
         const response = await fetch(API_URL, {

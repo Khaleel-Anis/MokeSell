@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const API_KEY = "6796ddca9cbb2707d665c482";
-    const CHAT_API_URL = "https://fedassignment-6369.restdb.io/rest/chats";
+    const API_KEY = "67a87718f247e57112117e1a";
+    const CHAT_API_URL = "https://mokesell-cd4f.restdb.io/rest/chats";
 
     const urlParams = new URLSearchParams(window.location.search);
     const buyerId = urlParams.get("buyerId");

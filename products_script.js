@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     console.log(`Fetching '${category || "All"}' products...`);
 
-    const API_URL = "https://fedassignment-6369.restdb.io/rest/products";
-    const API_KEY = "6796ddca9cbb2707d665c482";
+    const API_URL = "https://mokesell-cd4f.restdb.io/rest/products";
+    const API_KEY = "67a87718f247e57112117e1a";
 
     const query = category ? `?q=${encodeURIComponent(JSON.stringify({ category }))}` : "";
     const requestUrl = `${API_URL}${query}`;
@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 async function getSellerName(sellerId) {
-    const API_KEY = "6796ddca9cbb2707d665c482";
-    const USER_API_URL = `https://fedassignment-6369.restdb.io/rest/user-account/${sellerId}`;
+    const API_KEY = "67a87718f247e57112117e1a";
+    const USER_API_URL = `https://mokesell-cd4f.restdb.io/rest/user-account/${sellerId}`;
 
     try {
         const response = await fetch(USER_API_URL, {

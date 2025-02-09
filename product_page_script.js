@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const API_URL = "https://fedassignment-6369.restdb.io/rest/products";
-    const USER_API_URL = "https://fedassignment-6369.restdb.io/rest/user-account";
-    const API_KEY = "6796ddca9cbb2707d665c482";
+    const API_URL = "https://mokesell-cd4f.restdb.io/rest/products";
+    const USER_API_URL = "https://mokesell-cd4f.restdb.io/rest/user-account";
+    const API_KEY = "67a87718f247e57112117e1a";
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
 

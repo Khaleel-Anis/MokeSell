@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Fetch and display logged-in user's info
-    fetch(`https://fedassignment-6369.restdb.io/rest/user-account/${userID}`, {
+    fetch(`https://mokesell-cd4f.restdb.io/rest/user-account/${userID}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "x-apikey": "6796ddca9cbb2707d665c482",
+            "x-apikey": "67a87718f247e57112117e1a",
         },
     })
     .then(response => response.json())
@@ -63,11 +63,11 @@ document.getElementById("sellForm").addEventListener("submit", async function (e
     console.log("Sending Product Data:", productData);
 
     try {
-        const response = await fetch("https://fedassignment-6369.restdb.io/rest/products", {
+        const response = await fetch("https://mokesell-cd4f.restdb.io/rest/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "x-apikey": "6796ddca9cbb2707d665c482",
+                "x-apikey": "67a87718f247e57112117e1a",
                 "Cache-Control": "no-cache",
             },
             body: JSON.stringify(productData),
